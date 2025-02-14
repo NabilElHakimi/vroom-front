@@ -7,9 +7,7 @@ import {VehicleCardComponent} from '../../components/vehicle-card/vehicle-card.c
 @Component({
   selector: 'app-home-page',
   imports: [
-    FooterComponent,
     CarouselHomeComponent,
-    HeaderComponent,
     VehicleCardComponent
   ],
   templateUrl: './home-page.component.html',
