@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { HomePageComponent } from './client/pages/home-page/home-page.component';
 import { PageClientComponent } from './client/pages/page-client/page-client.component';
 import {DetailsPageComponent} from './client/pages/details-page/details-page.component';
+import {LoginComponent} from './auth/login/login.component';
 
 export const routes: Routes = [
   {
@@ -9,6 +10,7 @@ export const routes: Routes = [
     redirectTo: 'client/home',
     pathMatch: 'full',
   },
+
   {
     path: 'client',
     component: PageClientComponent,
@@ -20,7 +22,14 @@ export const routes: Routes = [
       {
         path: 'details',
         component :DetailsPageComponent
-      }
+      },
+
     ]
+  },
+
+  {
+    path : 'login',
+    component : LoginComponent
   }
+
 ];
