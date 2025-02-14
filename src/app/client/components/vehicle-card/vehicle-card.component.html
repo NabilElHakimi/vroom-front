@@ -1,7 +1,7 @@
 <div class="max-w-sm mx-auto bg-white rounded-xl shadow-lg dark:bg-gray-800 overflow-hidden">
   <div class="relative">
     <img
-      src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8"
+      [src]="vehicle.articleImages[0].imageUrl"
       alt="Mercedes AMG GT"
       class="w-full h-48 object-cover"
     >
@@ -12,8 +12,8 @@
 
   <div class="p-6">
     <div class="flex justify-between items-center mb-3">
-      <h2 class="text-2xl font-bold text-gray-800 dark:text-white">Mercedes AMG GT</h2>
-      <span class="text-xl font-bold text-red-500">189 900 €</span>
+      <h2 class="text-2xl font-bold text-gray-800 dark:text-white">{{vehicle.title}}</h2>
+      <span class="text-xl font-bold text-red-500">{{vehicle.price}} MAD</span>
     </div>
 
     <p class="text-gray-600 mb-4 dark:text-white">
