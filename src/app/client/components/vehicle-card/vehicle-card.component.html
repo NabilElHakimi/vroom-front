@@ -5,9 +5,12 @@
       alt="Mercedes AMG GT"
       class="w-full h-48 object-cover"
     >
-    <div class="absolute top-4 right-4 bg-red-500 text-white px-2 py-1 rounded-full text-sm font-semibold">
+
+    <div *ngIf="isNewVehicle()" class="absolute top-4 right-4 bg-red-500 text-white px-2 py-1 rounded-full text-sm font-semibold">
       Nouveau
     </div>
+
+
   </div>
 
   <div class="p-6">
@@ -17,7 +20,7 @@
     </div>
 
     <p class="text-gray-600 mb-4 dark:text-white">
-      Une voiture d'exception alliant performance et luxe, avec son moteur V8 biturbo de 585 ch.
+      {{vehicle.description}}
     </p>
 
     <div class="flex justify-between items-center text-sm text-gray-500 mb-4 dark:text-white">
