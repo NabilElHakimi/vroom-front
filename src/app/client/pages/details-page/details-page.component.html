@@ -1,17 +1,8 @@
 <app-vehicle-details></app-vehicle-details>
 <div class="w-full  flex justify-center">
+
   <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3  px-3 max-w-6xl">
-    <app-vehicle-card></app-vehicle-card>
-    <app-vehicle-card></app-vehicle-card>
-    <app-vehicle-card></app-vehicle-card>
-    <app-vehicle-card></app-vehicle-card>
-    <app-vehicle-card></app-vehicle-card>
-    <app-vehicle-card></app-vehicle-card>
-    <app-vehicle-card></app-vehicle-card>
-    <app-vehicle-card></app-vehicle-card>
-    <app-vehicle-card></app-vehicle-card>
-    <app-vehicle-card></app-vehicle-card>
-    <app-vehicle-card></app-vehicle-card>
+    <app-vehicle-card *ngFor="let v of vehicles" [vehicle]="v"></app-vehicle-card>
   </div>
 
 </div>
