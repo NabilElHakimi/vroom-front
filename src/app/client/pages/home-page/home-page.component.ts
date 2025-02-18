@@ -1,11 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {FooterComponent} from '../../components/footer/footer.component';
 import {CarouselHomeComponent} from '../../components/carousel-home/carousel-home.component';
-import {HeaderComponent} from '../../components/header/header.component';
 import {VehicleCardComponent} from '../../components/vehicle-card/vehicle-card.component';
 import {VehicleService} from '../../../services/vehicle-service/vehicle.service';
 import {NgForOf, NgIf} from '@angular/common';
 import {Vehicle} from '../../../model/Vehicle';
+import {SuccesstoastService} from '../../../services/toast-service/successtoast.service';
 
 @Component({
   selector: 'app-home-page',
@@ -20,7 +19,11 @@ import {Vehicle} from '../../../model/Vehicle';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor(private vehicleService : VehicleService) {
+  successToast : boolean = false;
+  message:string = '';
+
+  constructor(private vehicleService : VehicleService ,
+              private successToastService : SuccesstoastService) {
 
   }
 
@@ -33,8 +36,15 @@ export class HomePageComponent implements OnInit {
   getVehicle(): void {
     this.vehicleService.getVehicle().subscribe((data: any) => {
       this.vehicles = data.content;
+
+      this.successToast = true;
+      setTimeout(() => {
+        this.successToast = false;
+        this.message = '';
+      }, 5000);
     });
   }
+
 
 
 

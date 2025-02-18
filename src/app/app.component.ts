@@ -1,18 +1,23 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import {HeaderComponent} from './client/components/header/header.component';
-import {CarouselHomeComponent} from './client/components/carousel-home/carousel-home.component';
-import {FooterComponent} from './client/components/footer/footer.component';
-import {ThemeService} from './services/theme-service/theme.service';
+import { SuccesstoastService } from './services/toast-service/successtoast.service';
+import { NgIf } from '@angular/common';
+import { SuccessToastComponent } from './components/success-toast/success-toast.component';
+import {RouterOutlet} from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [NgIf, SuccessToastComponent, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'vroom-front';
-  constructor(private themeService: ThemeService) {}
+  toastMessage: { message: string | null; type: string } | null = null;
 
+  constructor(private toastService: SuccesstoastService) {
+    this.toastService.message$.subscribe(toast => {
+      this.toastMessage = toast;
+    });
+  }
 }
