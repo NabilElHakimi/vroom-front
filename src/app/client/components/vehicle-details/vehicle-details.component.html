@@ -16,7 +16,7 @@
         <!-- Thumbnails -->
         <div class="flex gap-4 py-4 justify-center overflow-x-auto">
           <img
-            *ngFor="let imageUrl of allImages.slice(1); let i = index"
+            *ngFor="let imageUrl of allImages; let i = index"
             [src]="imageUrl"
             [alt]="'Thumbnail ' + (i + 1)"
             class="size-16 sm:size-20 object-cover rounded-md cursor-pointer opacity-60 hover:opacity-100 transition duration-300"
