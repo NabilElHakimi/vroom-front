@@ -14,4 +14,8 @@ export class VehicleService {
     return this.http.get(`${environment.API_URL}/vehicles/all`);
   }
 
+  getVehicleById(id: any): Observable<any> {
+    return this.http.get(`${environment.API_URL}/vehicles/find/${id}`);
+  }
+
 }

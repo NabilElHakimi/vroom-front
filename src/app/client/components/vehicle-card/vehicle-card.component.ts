@@ -1,11 +1,13 @@
 import {Component, Input} from '@angular/core';
 import {Vehicle} from '../../../model/Vehicle';
 import {NgIf} from '@angular/common';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-vehicle-card',
   imports: [
-    NgIf
+    NgIf,
+    RouterLink
   ],
   templateUrl: './vehicle-card.component.html',
   styleUrl: './vehicle-card.component.css'

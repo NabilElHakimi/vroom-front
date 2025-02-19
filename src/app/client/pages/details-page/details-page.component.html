@@ -1,4 +1,4 @@
-<app-vehicle-details></app-vehicle-details>
+<app-vehicle-details [vehicle]="vehicleFound!" [firstImage]="vehicleFound?.articleImages?.[0]?.imageUrl"></app-vehicle-details>
 <div class="w-full  flex justify-center">
 
   <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3  px-3 max-w-6xl">
@@ -6,3 +6,4 @@
   </div>
 
 </div>
+
