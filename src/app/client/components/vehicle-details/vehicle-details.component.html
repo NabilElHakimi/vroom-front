@@ -1,5 +1,5 @@
 <div class="dark:text-white">
-  <div class="max-w-6xl my-10 container mx-auto px-4 py-8">
+  <div class="max-w-6xl my-10 container mx-auto px-4 py-8 ">
     <div class="flex flex-wrap -mx-4">
       <!-- Product Images -->
       <div class="w-full md:w-1/2 px-4 mb-8">
@@ -8,7 +8,7 @@
           <img
             [src]="allImages[currentImageIndex]"
             alt="{{vehicle.model}}"
-            class="bg-gray-200 dark:bg-gray-800 w-full h-96 rounded-lg shadow-md mb-4 object-contain cursor-zoom-in hover:opacity-90 transition duration-300"
+            class=" w-full h-96 rounded-lg mb-4 object-contain cursor-zoom-in hover:opacity-90 transition duration-300"
             (click)="toggleModal()"
           />
         </div>
@@ -21,7 +21,7 @@
             [alt]="'Thumbnail ' + (i + 1)"
             class="size-16 sm:size-20 object-cover rounded-md cursor-pointer opacity-60 hover:opacity-100 transition duration-300"
             (click)="changeImage(imageUrl)"
-            [class.opacity-100]="currentImageIndex === (i + 1)"
+            [class.opacity-90]="currentImageIndex === i"
           />
         </div>
 
@@ -30,7 +30,7 @@
              class="fixed inset-0 bg-black/90 z-50 flex items-center justify-center"
              (click)="toggleModal($event)">
           <!-- Modal Content -->
-          <div class="h-full w-full flex items-center justify-center relative">
+          <div class="h-full w-full sm:w-[80%] sm:h-[80%] flex items-center justify-center relative">
             <!-- Main Image Container -->
             <div class="relative w-full h-full flex items-center justify-center"
                  (click)="$event.stopPropagation()">
@@ -43,14 +43,14 @@
 
             <!-- Navigation Buttons -->
             <button
-              class="absolute left-4 top-1/2 -translate-y-1/2 bg-red-500/40 hover:bg-red-500/60 text-white p-1 sm:p-6 rounded-full text-2xl transition-all duration-300 z-10"
+              class="absolute left-4 sm:left-[-10%] top-1/2 -translate-y-1/2 bg-red-500/40 hover:bg-red-500/60 text-white p-1 sm:p-6 rounded-full text-2xl transition-all duration-300 z-10"
               (click)="previousImage(); $event.stopPropagation()">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-8 w-8">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
               </svg>
             </button>
             <button
-              class="absolute right-4 top-1/2 -translate-y-1/2 bg-red-500/40 hover:bg-red-500/60 text-white p-1 sm:p-6 rounded-full text-2xl transition-all duration-300 z-10"
+              class="absolute right-4 sm:right-[-10%] top-1/2 -translate-y-1/2 bg-red-500/40 hover:bg-red-500/60 text-white p-1 sm:p-6 rounded-full text-2xl transition-all duration-300 z-10"
               (click)="nextImage(); $event.stopPropagation()">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-8 w-8">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
@@ -59,7 +59,7 @@
 
             <!-- Close Button -->
             <button
-              class="absolute top-4 right-4 text-white bg-white/10 hover:bg-white/20 rounded-full p-1 sm:p-4 text-xl transition-all duration-300 z-10"
+              class="absolute top-4 right-4 sm:right-[-10%] sm:top-[-10%] text-white bg-white/10 hover:bg-white/20 rounded-full p-1 sm:p-4 text-xl transition-all duration-300 z-10"
               (click)="toggleModal($event)">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-8 w-8">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -76,9 +76,9 @@
 
       <!-- Product Details -->
       <div class="w-full md:w-1/2 px-4">
-        <h2 class="text-3xl font-bold mb-2">{{vehicle.title}}</h2>
+        <h2 class="text-3xl font-bold mb-2 text-black">{{vehicle.title}}</h2>
         <div class="mb-4">
-          <span class="text-2xl font-bold mr-2">{{vehicle.price}} MAD</span>
+          <span class="text-2xl font-bold mr-2 text-blue-700">{{vehicle.price}} MAD</span>
         </div>
         <div class="flex items-center mb-4">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
@@ -122,4 +122,6 @@
       </div>
     </div>
   </div>
+
+
 </div>
