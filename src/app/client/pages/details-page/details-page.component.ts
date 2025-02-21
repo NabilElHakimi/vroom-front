@@ -42,7 +42,6 @@ export class DetailsPageComponent implements OnInit {
 
   getVehicleById(id: string): void {
     this.vehicleService.getVehicleById(id).subscribe((data: Vehicle) => {
-      console.log('Vehicle:', data);
       this.vehicleFound = data;
     });
   }

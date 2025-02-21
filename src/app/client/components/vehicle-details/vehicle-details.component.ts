@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Vehicle } from '../../../model/Vehicle';
-import { ActivatedRoute, Router } from '@angular/router'; // Import router modules
+import { ActivatedRoute, Router } from '@angular/router';
 import { Renderer2 } from '@angular/core';
 
 @Component({
@@ -11,7 +11,7 @@ import { Renderer2 } from '@angular/core';
   templateUrl: './vehicle-details.component.html',
   styleUrls: ['./vehicle-details.component.css']
 })
-export class VehicleDetailsComponent implements OnInit {
+export class VehicleDetailsComponent  {
   @Input() vehicle!: Vehicle;
   @Input() firstImage!: string | undefined;
 
@@ -19,23 +19,6 @@ export class VehicleDetailsComponent implements OnInit {
   currentImageIndex = 0;
 
   constructor(private router: Router, private renderer: Renderer2, private activatedRoute: ActivatedRoute) {}
-
-  ngOnInit(): void {
-    // Trigger scroll to top on component init (in case of route changes)
-    this.scrollToTop();
-  }
-
-  ngAfterViewInit() {
-    // You can also trigger the scroll after the view has fully initialized
-    this.scrollToTop();
-  }
-
-  scrollToTop() {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth' // Smooth scroll behavior
-    });
-  }
 
   get allImages(): string[] {
     return this.vehicle.articleImages?.map(img => img.imageUrl) || [];
@@ -65,4 +48,5 @@ export class VehicleDetailsComponent implements OnInit {
       ? this.allImages.length - 1
       : this.currentImageIndex - 1;
   }
+
 }

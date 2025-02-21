@@ -1,5 +1,6 @@
 import {ArticleImage} from './ArticleImage';
 import {UserDetails} from './UserDetails';
+import {Model} from './Model';
 
 export interface Vehicle {
   id?: number;
@@ -14,7 +15,8 @@ export interface Vehicle {
   userDetails?: UserDetails;
   likes?: any[];
   city?: string | null;
-  model?: string | null;
+  model?: Model;
   createdAt?: string;
   updatedAt?: string | null;
+  
 }
