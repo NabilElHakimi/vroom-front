@@ -18,5 +18,8 @@ export interface Vehicle {
   model?: Model;
   createdAt?: string;
   updatedAt?: string | null;
-  
+  fuelType?: string;
+  year?: string;
+  mileage?: number;
+
 }

@@ -3,4 +3,6 @@ export interface UserDetails {
   last_name: string;
   username: string;
   email: string;
+  image?: string;
+
 }

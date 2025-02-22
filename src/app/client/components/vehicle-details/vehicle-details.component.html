@@ -84,31 +84,53 @@
       <div class="w-full md:w-1/2 px-4">
         <!-- Title and Price -->
         <div class="mb-6 border-b border-gray-200 dark:border-gray-700 pb-4">
-          <h2 class="text-3xl font-bold mb-2 text-black dark:text-white">{{vehicle.title}}</h2>
+          <h2 class="text-3xl font-bold mb-2 text-gray-800 dark:text-white">{{vehicle.title}}</h2>
           <div class="flex items-center justify-between">
-            <span class="text-2xl font-bold text-blue-700 dark:text-blue-400">{{vehicle.price}} MAD</span>
+            <span class="text-2xl font-bold text-indigo-700 dark:text-indigo-500">{{vehicle.price}} MAD</span>
             <span class="text-sm text-gray-500 dark:text-gray-400">SKU: {{vehicle.id}}</span>
           </div>
         </div>
 
         <!-- Rating and Reviews -->
-        <div class="flex items-center mb-6">
-          <div class="flex">
-            <svg *ngFor="let _ of [1,2,3,4,5]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                 class="h-5 w-5 text-yellow-500 dark:text-yellow-400">
-              <path fill-rule="evenodd"
-                    d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
-                    clip-rule="evenodd" />
-            </svg>
+        <div class="flex items-start flex-col mb-6 gap-3">
+          <div>
+            <h3 class="dark:text-gray-300 text-gray-800 text-sm font-semibold mb-1">City :</h3>
+            <span class="text-gray-100 ml-5 bg-red-500 px-3 py-0.5 rounded-full">{{ vehicle.city }}</span>
           </div>
-          <span class="ml-2 text-gray-600 dark:text-gray-400">4.5 (120 reviews)</span>
+
+          <div>
+            <h3 class="dark:text-gray-300 text-gray-800 text-sm font-semibold mb-1">Fuel Type :</h3>
+            <span class="text-gray-100 ml-5 bg-red-500 px-3 py-0.5 rounded-full">{{ vehicle.fuelType }}</span>
+          </div>
+
+          <div>
+            <h3 class="dark:text-gray-300 text-gray-800 text-sm font-semibold mb-1">Mileage :</h3>
+            <span class="text-gray-100 ml-5 bg-red-500 px-3 py-0.5 rounded-full">{{ vehicle.mileage }} Km</span>
+          </div>
+          <div>
+            <h3 class="dark:text-gray-300 text-gray-800 text-sm font-semibold mb-1">Year :</h3>
+            <span class="text-gray-100 ml-5 bg-red-500 px-3 py-0.5 rounded-full">{{ vehicle.year }}</span>
+          </div>
         </div>
 
         <!-- Description -->
         <p class="text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">
           {{vehicle.description}}
-          <span class="block mt-2 text-sm text-gray-500 dark:text-gray-400">Free shipping on all orders over 50,000 MAD</span>
         </p>
+
+
+        <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl mb-8 shadow">
+          <h3 class="text-xl font-semibold mb-4 text-black dark:text-white">Seller Information</h3>
+          <div class="flex items-center mb-4">
+            <img *ngIf="vehicle.userDetails?.image == null" src="https://vroomv.s3.eu-west-3.amazonaws.com/profile.webp?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIARHJJMURQAVASPPIH%2F20250222%2Feu-west-3%2Fs3%2Faws4_request&X-Amz-Date=20250222T215403Z&X-Amz-Expires=300&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEM7%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCWV1LXdlc3QtMyJIMEYCIQDlI3gqIPLtLLkpVbhmo%2B8LFR3H5nUh99DTyBFzKOBy7AIhAJhvsQqfp27HCoIwc2yocLBTu%2BKhCIP1daskdzh31EanKvECCPf%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQABoMMDg0Mzc1NTQ0OTI4IgzTzGoxCV2tqu3z27cqxQL19QFRqXEPenTzs%2F5PH9VNk9xj1QAoEsxcSsSl3uFIGwkOzuPOjflepqxEH00DIL7wAuIV1Y9Jpb9VlVFS0Rje5ir19erR7B343EuJjBr3N0%2FzzdhESkDKCcuinlgmMJmPYHwchciEgtIQPBWetPVNerpuzryQos%2F%2Bo4YcYaTj2%2BpWVnL9oc5ricNxA80Tleq4Elm0vGOAJ1UrKQ7U4dGjws0nYL2zuZSs13LBOhQRmT1rlsML%2F3c8ieCBq2MJ1uAIwuFpDFIFqAdNoMnpSgvQiKAZZm64IX%2BtWq%2FnAk%2FOUUPsB%2FUs%2FPKlSvkQ2%2F6GB6O2dZxhYI46cLcGLYXJKNGOTTecKdA84XdCoVQ0ORN022L8kgL%2FqSXS4SyQfyBU4zqovHVaqSUjlpWAYH9DEpN1FqlR9iR9JMvE8g9UZ9V2wQyPrfKTMJSF6b0GOrICvW37dBuIQ9Z3SvDCwHx6bWCQhNw7p4cyIGpB98YbJtAiGOUF4AQZGAjkSItPN9MvvhxCXhWMfOeueVvE5O4Y9KR3AlYZRV%2BQXEND80paF6Mv3dO3TqxqCZb9aUpbyv8%2FyGM65U7MqK8G1M2V6xYQH36pMLfJngStmL4bamkez5AqN8YaOO7G2hThNj2Yggwak5NXzRXIv6tRWnKh8jaK2gbhcLVxkeJJN68YZyT%2FbYicJBllXhSblixaUMdJl4xOxG2vPxQUZTUbURN6roL%2FgmgNey7Sp6zPCp%2FOTSoRf7ye1qVG%2F%2BE2fg2JirC%2FIcwGvDweZB7Cy93o5vtnL9ESs7tAzE8XuUGqUKof81ItdOKFHmxZS9OGPW1PYkBS%2BRdNyxx%2FEgzZYf669Ku61C9G8h2g&X-Amz-Signature=0d8e4bcf0e8ced8013bde162cdf60527e47717969bda87977aac26bb9407e0ea&X-Amz-SignedHeaders=host&response-content-disposition=inline" alt="Seller Avatar" class="h-12 w-12 rounded-full object-cover mr-4">
+            <img src="{{vehicle.userDetails?.image}}" alt="Seller Avatar" class="h-12 w-12 rounded-full object-cover mr-4">
+            <div>
+              <h4 class="text-lg font-semibold text-black dark:text-white"> {{vehicle.userDetails?.first_name}} {{vehicle.userDetails?.last_name}}</h4>
+              <p class="text-gray-600 dark:text-gray-400">Télephone : {{vehicle.telephone}}</p>
+            </div>
+          </div>
+          <!--          <p class="text-gray-700 dark:text-gray-300">{{seller.bio}}</p>-->
+        </div>
 
         <!-- Contact Seller Button -->
         <div class="flex flex-col sm:flex-row gap-4 mb-8">
@@ -124,20 +146,10 @@
         </div>
 
         <!-- Seller Information -->
-        <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl mb-8">
-          <h3 class="text-xl font-semibold mb-4 text-black dark:text-white">Seller Information</h3>
-          <div class="flex items-center mb-4">
-            <img src="seller-avatar.jpg" alt="Seller Avatar" class="h-12 w-12 rounded-full object-cover mr-4">
-            <div>
-              <h4 class="text-lg font-semibold text-black dark:text-white">nabil el hakimi</h4>
-              <p class="text-gray-600 dark:text-gray-400">Rabat</p>
-            </div>
-          </div>
-<!--          <p class="text-gray-700 dark:text-gray-300">{{seller.bio}}</p>-->
-        </div>
+
 
         <!-- Key Features -->
-        <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl">
+        <!--<div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl">
           <h3 class="text-xl font-semibold mb-4 text-black dark:text-white">Key Features</h3>
           <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <li class="flex items-center gap-3 text-gray-700 dark:text-gray-300">
@@ -165,13 +177,10 @@
               5-Year Warranty
             </li>
           </ul>
-        </div>
+        </div>-->
 
         <!-- Additional Info -->
-        <div class="mt-8 text-sm text-gray-600 dark:text-gray-400">
-          <p class="mb-2">✔️ 30-day money-back guarantee</p>
-          <p>✔️ Free nationwide delivery</p>
-        </div>
+
       </div>
     </div>
   </div>
