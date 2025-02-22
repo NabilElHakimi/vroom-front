@@ -93,25 +93,39 @@
 
         <!-- Rating and Reviews -->
         <div class="flex items-start flex-col mb-6 gap-3">
-          <div>
-            <h3 class="dark:text-gray-300 text-gray-800 text-sm font-semibold mb-1">City :</h3>
-            <span class="text-gray-100 ml-5 bg-red-500 px-3 py-0.5 rounded-full">{{ vehicle.city }}</span>
+          <!-- City -->
+          <div class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-800 dark:text-gray-300" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 12 7 12s7-6.8 7-12c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5s2.5 1.1 2.5 2.5S13.4 11.5 12 11.5z"/>
+            </svg>
+            <span class="text-gray-100 bg-red-500 px-3 py-0.5 rounded-full">{{ vehicle.city }}</span>
           </div>
 
-          <div>
-            <h3 class="dark:text-gray-300 text-gray-800 text-sm font-semibold mb-1">Fuel Type :</h3>
-            <span class="text-gray-100 ml-5 bg-red-500 px-3 py-0.5 rounded-full">{{ vehicle.fuelType }}</span>
+          <!-- Fuel Type -->
+          <div class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-800 dark:text-gray-300" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M6 2v16H4v2h12v-2h-2V6h5v3h2V6a2 2 0 0 0-2-2h-7V2H6z"/>
+            </svg>
+            <span class="text-gray-100 bg-red-500 px-3 py-0.5 rounded-full">{{ vehicle.fuelType }}</span>
           </div>
 
-          <div>
-            <h3 class="dark:text-gray-300 text-gray-800 text-sm font-semibold mb-1">Mileage :</h3>
-            <span class="text-gray-100 ml-5 bg-red-500 px-3 py-0.5 rounded-full">{{ vehicle.mileage }} Km</span>
+          <!-- Mileage -->
+          <div class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-800 dark:text-gray-300" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 4C7 4 2.7 7.5 2.1 12.5a1 1 0 0 0 1 1.1h1.9a1 1 0 0 0 1-0.9c0.5-3.5 3.4-6.2 6.9-6.2 3.6 0 6.5 2.7 6.9 6.2a1 1 0 0 0 1 0.9h1.9a1 1 0 0 0 1-1.1C21.3 7.5 17 4 12 4z"/>
+            </svg>
+            <span class="text-gray-100 bg-red-500 px-3 py-0.5 rounded-full">{{ vehicle.mileage }} Km</span>
           </div>
-          <div>
-            <h3 class="dark:text-gray-300 text-gray-800 text-sm font-semibold mb-1">Year :</h3>
-            <span class="text-gray-100 ml-5 bg-red-500 px-3 py-0.5 rounded-full">{{ vehicle.year }}</span>
+
+          <!-- Year -->
+          <div class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-800 dark:text-gray-300" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M4 4h16v2H4V4zm0 4h16v2H4V8zm0 4h16v2H4v-2zm0 4h16v2H4v-2z"/>
+            </svg>
+            <span class="text-gray-100 bg-red-500 px-3 py-0.5 rounded-full">{{ vehicle.year }}</span>
           </div>
         </div>
+
 
         <!-- Description -->
         <p class="text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">
@@ -122,8 +136,16 @@
         <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl mb-8 shadow">
           <h3 class="text-xl font-semibold mb-4 text-black dark:text-white">Seller Information</h3>
           <div class="flex items-center mb-4">
-            <img *ngIf="vehicle.userDetails?.image == null" src="https://vroomv.s3.eu-west-3.amazonaws.com/profile.webp?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIARHJJMURQAVASPPIH%2F20250222%2Feu-west-3%2Fs3%2Faws4_request&X-Amz-Date=20250222T215403Z&X-Amz-Expires=300&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEM7%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCWV1LXdlc3QtMyJIMEYCIQDlI3gqIPLtLLkpVbhmo%2B8LFR3H5nUh99DTyBFzKOBy7AIhAJhvsQqfp27HCoIwc2yocLBTu%2BKhCIP1daskdzh31EanKvECCPf%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQABoMMDg0Mzc1NTQ0OTI4IgzTzGoxCV2tqu3z27cqxQL19QFRqXEPenTzs%2F5PH9VNk9xj1QAoEsxcSsSl3uFIGwkOzuPOjflepqxEH00DIL7wAuIV1Y9Jpb9VlVFS0Rje5ir19erR7B343EuJjBr3N0%2FzzdhESkDKCcuinlgmMJmPYHwchciEgtIQPBWetPVNerpuzryQos%2F%2Bo4YcYaTj2%2BpWVnL9oc5ricNxA80Tleq4Elm0vGOAJ1UrKQ7U4dGjws0nYL2zuZSs13LBOhQRmT1rlsML%2F3c8ieCBq2MJ1uAIwuFpDFIFqAdNoMnpSgvQiKAZZm64IX%2BtWq%2FnAk%2FOUUPsB%2FUs%2FPKlSvkQ2%2F6GB6O2dZxhYI46cLcGLYXJKNGOTTecKdA84XdCoVQ0ORN022L8kgL%2FqSXS4SyQfyBU4zqovHVaqSUjlpWAYH9DEpN1FqlR9iR9JMvE8g9UZ9V2wQyPrfKTMJSF6b0GOrICvW37dBuIQ9Z3SvDCwHx6bWCQhNw7p4cyIGpB98YbJtAiGOUF4AQZGAjkSItPN9MvvhxCXhWMfOeueVvE5O4Y9KR3AlYZRV%2BQXEND80paF6Mv3dO3TqxqCZb9aUpbyv8%2FyGM65U7MqK8G1M2V6xYQH36pMLfJngStmL4bamkez5AqN8YaOO7G2hThNj2Yggwak5NXzRXIv6tRWnKh8jaK2gbhcLVxkeJJN68YZyT%2FbYicJBllXhSblixaUMdJl4xOxG2vPxQUZTUbURN6roL%2FgmgNey7Sp6zPCp%2FOTSoRf7ye1qVG%2F%2BE2fg2JirC%2FIcwGvDweZB7Cy93o5vtnL9ESs7tAzE8XuUGqUKof81ItdOKFHmxZS9OGPW1PYkBS%2BRdNyxx%2FEgzZYf669Ku61C9G8h2g&X-Amz-Signature=0d8e4bcf0e8ced8013bde162cdf60527e47717969bda87977aac26bb9407e0ea&X-Amz-SignedHeaders=host&response-content-disposition=inline" alt="Seller Avatar" class="h-12 w-12 rounded-full object-cover mr-4">
-            <img src="{{vehicle.userDetails?.image}}" alt="Seller Avatar" class="h-12 w-12 rounded-full object-cover mr-4">
+            <img *ngIf="!vehicle.userDetails?.image"
+                 src="https://vroomv.s3.eu-west-3.amazonaws.com/profile.webp"
+                 alt="Seller Avatar"
+                 class="h-12 w-12 rounded-full object-cover mr-4">
+
+            <img *ngIf="vehicle.userDetails?.image"
+                 [src]="vehicle.userDetails?.image"
+                 alt="Seller Avatar"
+                 class="h-12 w-12 rounded-full object-cover mr-4">
+
             <div>
               <h4 class="text-lg font-semibold text-black dark:text-white"> {{vehicle.userDetails?.first_name}} {{vehicle.userDetails?.last_name}}</h4>
               <p class="text-gray-600 dark:text-gray-400">Télephone : {{vehicle.telephone}}</p>
