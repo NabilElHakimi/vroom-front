@@ -84,126 +84,134 @@
       <div class="w-full md:w-1/2 px-4">
         <!-- Title and Price -->
         <div class="mb-6 border-b border-gray-200 dark:border-gray-700 pb-4">
-          <h2 class="text-3xl font-bold mb-2 text-gray-800 dark:text-white">{{vehicle.title}}</h2>
+          <h2 class="text-4xl font-bold mb-2 text-gray-900 dark:text-white">{{vehicle.mark}}</h2>
+          <h2 class="text-2xl font-bold mb-2 text-gray-700 dark:text-gray-300">{{vehicle.model}}</h2>
           <div class="flex items-center justify-between">
-            <span class="text-2xl font-bold text-indigo-700 dark:text-indigo-500">{{vehicle.price}} MAD</span>
+            <span class="text-3xl font-bold text-indigo-600 dark:text-indigo-400">{{vehicle.price}} MAD</span>
             <span class="text-sm text-gray-500 dark:text-gray-400">SKU: {{vehicle.id}}</span>
           </div>
         </div>
 
         <!-- Rating and Reviews -->
-        <div class="flex items-start flex-col mb-6 gap-3">
+        <div class="flex items-start flex-col mb-6 gap-4">
           <!-- City -->
-          <div class="flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-800 dark:text-gray-300" viewBox="0 0 24 24" fill="currentColor">
+          <div class="flex items-center gap-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-800 dark:text-gray-300" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 12 7 12s7-6.8 7-12c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5s2.5 1.1 2.5 2.5S13.4 11.5 12 11.5z"/>
             </svg>
-            <span class="text-gray-100 bg-red-500 px-3 py-0.5 rounded-full">{{ vehicle.city }}</span>
+            <span class="text-white bg-red-600 px-4 py-1 rounded-full text-sm font-semibold">{{ vehicle.city }}</span>
           </div>
 
           <!-- Fuel Type -->
-          <div class="flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-800 dark:text-gray-300" viewBox="0 0 24 24" fill="currentColor">
+          <div class="flex items-center gap-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-800 dark:text-gray-300" viewBox="0 0 24 24" fill="currentColor">
               <path d="M6 2v16H4v2h12v-2h-2V6h5v3h2V6a2 2 0 0 0-2-2h-7V2H6z"/>
             </svg>
-            <span class="text-gray-100 bg-red-500 px-3 py-0.5 rounded-full">{{ vehicle.fuelType }}</span>
+            <span class="text-white bg-red-600 px-4 py-1 rounded-full text-sm font-semibold">{{ vehicle.fuelType }}</span>
           </div>
 
           <!-- Mileage -->
-          <div class="flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-800 dark:text-gray-300" viewBox="0 0 24 24" fill="currentColor">
+          <!--<div class="flex items-center gap-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-800 dark:text-gray-300" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 4C7 4 2.7 7.5 2.1 12.5a1 1 0 0 0 1 1.1h1.9a1 1 0 0 0 1-0.9c0.5-3.5 3.4-6.2 6.9-6.2 3.6 0 6.5 2.7 6.9 6.2a1 1 0 0 0 1 0.9h1.9a1 1 0 0 0 1-1.1C21.3 7.5 17 4 12 4z"/>
             </svg>
-            <span class="text-gray-100 bg-red-500 px-3 py-0.5 rounded-full">{{ vehicle.mileage }} Km</span>
-          </div>
+            <span class="text-white bg-red-600 px-4 py-1 rounded-full text-sm font-semibold">{{ vehicle.mileage }} Km</span>
+          </div>-->
 
           <!-- Year -->
-          <div class="flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-800 dark:text-gray-300" viewBox="0 0 24 24" fill="currentColor">
+          <div class="flex items-center gap-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-800 dark:text-gray-300" viewBox="0 0 24 24" fill="currentColor">
               <path d="M4 4h16v2H4V4zm0 4h16v2H4V8zm0 4h16v2H4v-2zm0 4h16v2H4v-2z"/>
             </svg>
-            <span class="text-gray-100 bg-red-500 px-3 py-0.5 rounded-full">{{ vehicle.year }}</span>
+            <span class="text-white bg-red-600 px-4 py-1 rounded-full text-sm font-semibold">{{ vehicle.year }}</span>
           </div>
         </div>
-
 
         <!-- Description -->
         <p class="text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">
           {{vehicle.description}}
         </p>
 
+        <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl mb-8 shadow-md">
+          <h3 class="text-3xl font-semibold mb-6 text-black dark:text-white">{{vehicle.location.name  }}</h3>
 
-        <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl mb-8 shadow">
-          <h3 class="text-xl font-semibold mb-4 text-black dark:text-white">Seller Information</h3>
+          <!-- Seller Avatar and Name -->
           <div class="flex items-center mb-4">
-            <img *ngIf="!vehicle.userDetails?.image"
-                 src="https://vroomv.s3.eu-west-3.amazonaws.com/profile.webp"
-                 alt="Seller Avatar"
-                 class="h-12 w-12 rounded-full object-cover mr-4">
+            <div class="relative">
+              <img *ngIf="!vehicle.userDetails?.image"
+                   src="https://vroomv.s3.eu-west-3.amazonaws.com/profile.webp"
+                   alt="Seller Avatar"
+                   class="h-16 w-16 rounded-full object-cover">
 
-            <img *ngIf="vehicle.userDetails?.image"
-                 [src]="vehicle.userDetails?.image"
-                 alt="Seller Avatar"
-                 class="h-12 w-12 rounded-full object-cover mr-4">
+              <img *ngIf="vehicle.userDetails?.image"
+                   [src]="vehicle.userDetails?.image"
+                   alt="Seller Avatar"
+                   class="h-16 w-16 rounded-full object-cover">
+            </div>
 
-            <div>
-              <h4 class="text-lg font-semibold text-black dark:text-white"> {{vehicle.userDetails?.first_name}} {{vehicle.userDetails?.last_name}}</h4>
-              <p class="text-gray-600 dark:text-gray-400">Télephone : {{vehicle.telephone}}</p>
+            <div class="ml-4">
+              <h4 class="text-xl font-semibold text-black dark:text-white">{{vehicle.userDetails?.first_name}} {{vehicle.userDetails?.last_name}}</h4>
+              <p class="text-gray-600 dark:text-gray-400 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600 dark:text-gray-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.211L5.75 11.502a1 1 0 01-.502-.121l-1.498-3.33a1 1 0 01.502-1.211L8.28 2.684A2 2 0 0112 3h7a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V7z" />
+                </svg>
+                {{vehicle.telephone}}
+              </p>
             </div>
           </div>
-          <!--          <p class="text-gray-700 dark:text-gray-300">{{seller.bio}}</p>-->
+
+          <!-- Location Information -->
+          <div>
+            <div class="space-y-3 text-gray-700 dark:text-gray-300">
+
+              <p class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600 dark:text-gray-400 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                {{vehicle.location.address}}
+              </p>
+              <p class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600 dark:text-gray-400 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-7 0h11" />
+                </svg>
+                {{vehicle.location.city}}
+              </p>
+              <p class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600 dark:text-gray-400 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                {{vehicle.location.email}}
+              </p>
+              <p class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600 dark:text-gray-400 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.211L5.75 11.502a1 1 0 01-.502-.121l-1.498-3.33a1 1 0 01.502-1.211L8.28 2.684A2 2 0 0112 3h7a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V7z" />
+                </svg>
+                {{vehicle.location.telephone}}
+              </p>
+            </div>
+          </div>
+
+          <!-- Seller Bio (Uncomment if needed) -->
+          <!-- <p class="text-gray-700 dark:text-gray-300 mt-4">{{seller.bio}}</p> -->
         </div>
 
         <!-- Contact Seller Button -->
         <div class="flex flex-col sm:flex-row gap-4 mb-8">
           <button
             class="flex-1 bg-indigo-600 dark:bg-indigo-700 hover:bg-indigo-700 dark:hover:bg-indigo-600 text-white px-6 py-3 rounded-lg
-             transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-indigo-500/30">
+    transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-indigo-500/30">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
-            Contact Seller
+
+            <span class="text-lg font-semibold">Book Now</span>
           </button>
         </div>
 
-        <!-- Seller Information -->
-
-
-        <!-- Key Features -->
-        <!--<div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl">
-          <h3 class="text-xl font-semibold mb-4 text-black dark:text-white">Key Features</h3>
-          <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <li class="flex items-center gap-3 text-gray-700 dark:text-gray-300">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-5 w-5 text-green-500">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-              </svg>
-              Premium Quality Materials
-            </li>
-            <li class="flex items-center gap-3 text-gray-700 dark:text-gray-300">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-5 w-5 text-green-500">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-              </svg>
-              Advanced Safety Features
-            </li>
-            <li class="flex items-center gap-3 text-gray-700 dark:text-gray-300">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-5 w-5 text-green-500">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-              </svg>
-              Eco-Friendly Engine
-            </li>
-            <li class="flex items-center gap-3 text-gray-700 dark:text-gray-300">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-5 w-5 text-green-500">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-              </svg>
-              5-Year Warranty
-            </li>
-          </ul>
-        </div>-->
-
-        <!-- Additional Info -->
-
       </div>
+
     </div>
   </div>
 </div>
