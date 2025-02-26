@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ThemeService} from '../../../services/theme-service/theme.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,7 @@ import {ThemeService} from '../../../services/theme-service/theme.service';
 })
 export class HeaderComponent {
 
-  constructor(private themeService: ThemeService) {}
+  constructor(private themeService: ThemeService , private route :  Router) {}
 
   toggleTheme(): void {
     this.themeService.toggleTheme();
@@ -18,6 +19,14 @@ export class HeaderComponent {
 
   isDarkMode(): boolean {
     return this.themeService.isDarkMode();
+  }
+
+  logout(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.route.navigate(['/login']);
+
+
   }
 
 

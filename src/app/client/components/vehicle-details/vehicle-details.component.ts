@@ -1,24 +1,23 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Vehicle } from '../../../model/Vehicle';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Renderer2 } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { CalendarComponent } from '../../../components/calendar/calendar.component';
 
 @Component({
   selector: 'app-vehicle-details',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule, CalendarComponent],
   templateUrl: './vehicle-details.component.html',
   styleUrls: ['./vehicle-details.component.css']
 })
-export class VehicleDetailsComponent  {
+export class VehicleDetailsComponent {
   @Input() vehicle!: Vehicle;
   @Input() firstImage!: string | undefined;
 
   isModalOpen = false;
   currentImageIndex = 0;
-
-  constructor(private router: Router, private renderer: Renderer2, private activatedRoute: ActivatedRoute) {}
+  isCalendarVisible = false;
 
   get allImages(): string[] {
     return this.vehicle.articleImages?.map(img => img.imageUrl) || [];
@@ -48,5 +47,10 @@ export class VehicleDetailsComponent  {
       ? this.allImages.length - 1
       : this.currentImageIndex - 1;
   }
+
+  toggleCalendar() {
+    this.isCalendarVisible = !this.isCalendarVisible;
+  }
+
 
 }
