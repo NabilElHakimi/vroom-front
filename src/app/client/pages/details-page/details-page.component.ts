@@ -13,10 +13,7 @@ import {CalendarComponent} from '../../../components/calendar/calendar.component
   imports: [
     VehicleDetailsComponent,
     VehicleCardComponent,
-    NgForOf,
-    CalendarComponent,
-    NgClass,
-    NgIf
+    NgForOf
   ],
   templateUrl: './details-page.component.html',
   styleUrl: './details-page.component.css'
