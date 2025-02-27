@@ -1,15 +1,32 @@
 import {Component, Input} from '@angular/core';
 import { NgClass, NgForOf } from '@angular/common';
+import {CalendarService} from '../../services/calendar-service/calendar.service';
+import {Reservation} from '../../model/Reservation';
+import {SuccesstoastService} from '../../services/toast-service/successtoast.service';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 
 @Component({
   selector: 'app-calendar',
-  imports: [NgClass, NgForOf],
+  imports: [NgClass, NgForOf ],
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.css'],
 })
 export class CalendarComponent {
 
+  constructor(private calendarService: CalendarService ,
+              private toast:SuccesstoastService) {
+    this.generateCalendar();
+  }
+
+  reservationModel: Reservation = {
+    vehicleId: "",
+    startDate: "",
+    endDate: ""
+  }
+
+
   @Input() vehicleIDInputs : number = 0;
+
 
 
   currentDate: Date = new Date();
@@ -25,9 +42,7 @@ export class CalendarComponent {
 
   today: Date = new Date();
 
-  constructor() {
-    this.generateCalendar();
-  }
+
 
   generateCalendar(): void {
     const year = this.currentDate.getFullYear();
@@ -101,9 +116,29 @@ export class CalendarComponent {
 
 
   bookVehicle() {
-    console.log(`Vehicle ID: ${this.vehicleIDInputs}`);
-    console.log(`Selected period: ${this.selectedStartDate?.toDateString()} to ${this.selectedEndDate?.toDateString()}`);
+    // console.log(`Vehicle ID: ${this.vehicleIDInputs}`);
+    // console.log(`Selected period: ${this.selectedStartDate?.toDateString()} to ${this.selectedEndDate?.toDateString()}`);
+    //
+    // this.reservationModel.vehicleId = this.vehicleIDInputs.toString();
+    // this.reservationModel.startDate = this.selectedStartDate?.toDateString();
+    // this.reservationModel.endDate = this.selectedEndDate?.toDateString();
+    //
+    // console.log("Hadiiii model")
+    // console.log(this.reservationModel);
+    //
+
+    if (this.selectedStartDate && this.selectedEndDate) {
+      this.calendarService.addReservation(this.vehicleIDInputs, this.selectedStartDate, this.selectedEndDate)
+        .subscribe(() => {
+          this.toast.showToast('Reservation successful', 'success');
+        });
+    }
+
+
   }
+
+
+
 
 
 }
