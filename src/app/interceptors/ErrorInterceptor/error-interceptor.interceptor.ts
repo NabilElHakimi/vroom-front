@@ -5,7 +5,7 @@ import { SuccesstoastService } from '../../services/toast-service/successtoast.s
 import { inject } from '@angular/core';
 
 export const errorInterceptorInterceptor: HttpInterceptorFn = (req, next) => {
-  const toastService = inject(SuccesstoastService); // Inject the service using Angular's `inject` function
+  const toastService = inject(SuccesstoastService);
 
   return next(req).pipe(
     catchError(error => {
@@ -23,7 +23,6 @@ export const errorInterceptorInterceptor: HttpInterceptorFn = (req, next) => {
 
       console.log(errorMessage);
 
-      // Return the error to be handled by the calling code
       return throwError(() => new Error(errorMessage));
     })
   );
