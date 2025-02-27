@@ -15,8 +15,6 @@ export class VehicleDetailsComponent {
   @Input() vehicle!: Vehicle;
   @Input() firstImage!: string | undefined;
 
-
-
   isModalOpen = false;
   currentImageIndex = 0;
   isCalendarVisible = false;
@@ -36,6 +34,7 @@ export class VehicleDetailsComponent {
     if (event) {
       event.stopPropagation();
     }
+
     this.isModalOpen = !this.isModalOpen;
     document.body.style.overflow = this.isModalOpen ? 'hidden' : 'auto';
   }
@@ -53,6 +52,5 @@ export class VehicleDetailsComponent {
   toggleCalendar() {
     this.isCalendarVisible = !this.isCalendarVisible;
   }
-
 
 }
