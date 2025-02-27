@@ -1,14 +1,16 @@
 <app-carousel-home></app-carousel-home>
 
-<div class="w-full  flex justify-center">
-  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3  px-3 max-w-6xl">
-      <app-vehicle-card *ngFor="let v of vehicles" [vehicle]="v"></app-vehicle-card>
+
+  <div class="w-full  flex justify-center">
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3  px-3 max-w-6xl">
+        <app-vehicle-card *ngFor="let v of vehicles" [vehicle]="v"></app-vehicle-card>
+    </div>
+
   </div>
 
-</div>
+  <app-pagination-component
+    [totalPages]="totalPages"
+    [currentPage]="currentPage"
+    (pageChange)="onPageChange($event)">
+  </app-pagination-component>
 
-<app-pagination-component
-  [totalPages]="totalPages"
-  [currentPage]="currentPage"
-  (pageChange)="onPageChange($event)">
-</app-pagination-component>

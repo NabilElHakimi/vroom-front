@@ -17,7 +17,6 @@ export class PaginationComponentComponent {
   @Output() pageChange = new EventEmitter<number>();
 
   get pages(): number[] {
-    console.log(this.totalPages);
     return Array.from({ length: this.totalPages }, (_, i) => i + 1);
   }
 

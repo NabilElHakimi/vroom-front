@@ -15,7 +15,8 @@ import {PaginationComponentComponent} from '../../components/pagination-componen
     VehicleDetailsComponent,
     VehicleCardComponent,
     NgForOf,
-    PaginationComponentComponent
+    PaginationComponentComponent,
+    NgIf
   ],
   templateUrl: './details-page.component.html',
   styleUrl: './details-page.component.css'
@@ -24,6 +25,8 @@ export class DetailsPageComponent implements OnInit {
 
   vehicles: Vehicle[] = [];
   vehicleFound: Vehicle | null = null;
+
+  loading = true;
 
   totalPages: number = 1;
   currentPage: number = 1;
@@ -36,6 +39,8 @@ export class DetailsPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getVehicle();
+
+    this.loading = false;
 
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');

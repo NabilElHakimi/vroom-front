@@ -1,6 +1,16 @@
 <app-vehicle-details [vehicle]="vehicleFound!" [firstImage]="vehicleFound?.articleImages?.[0]?.imageUrl"></app-vehicle-details>
-<div class="w-full  flex justify-center">
 
+<div *ngIf="loading" class="text-center">
+  <div
+    class="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-red-500 mx-auto"
+  ></div>
+  <h2 class="text-zinc-900 dark:text-white mt-4">Loading...</h2>
+  <p class="text-zinc-600 dark:text-zinc-400">
+  </p>
+</div>
+
+<div *ngIf="!loading">
+<div  class="w-full  flex justify-center">
   <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3  px-3 max-w-6xl">
     <app-vehicle-card *ngFor="let v of vehicles" [vehicle]="v"></app-vehicle-card>
 
@@ -12,4 +22,4 @@
   [currentPage]="currentPage"
   (pageChange)="onPageChange($event)">
 </app-pagination-component>
-
+</div>

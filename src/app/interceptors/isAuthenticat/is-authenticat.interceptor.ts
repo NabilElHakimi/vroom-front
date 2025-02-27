@@ -2,7 +2,7 @@ import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { AuthService } from '../../services/auth-service/auth.service';
 import { Router } from '@angular/router';
-import { catchError, switchMap } from 'rxjs';
+import { catchError, EMPTY, switchMap } from 'rxjs';
 
 export const isAuthenticatInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);
@@ -23,9 +23,14 @@ export const isAuthenticatInterceptor: HttpInterceptorFn = (req, next) => {
   return next(authReq).pipe(
     catchError(error => {
       if (error.status === 403) {
+        console.log('Token expired. Attempting to refresh...');
+
         return authService.refreshToken().pipe(
           switchMap((newToken: any) => {
+            console.log('Token refresh response:', newToken);
+
             if (newToken && newToken.token) {
+              console.log('New token received, updating and retrying request');
               localStorage.setItem('token', newToken.token);
               const clonedReq = req.clone({
                 setHeaders: {
@@ -34,17 +39,21 @@ export const isAuthenticatInterceptor: HttpInterceptorFn = (req, next) => {
               });
               return next(clonedReq);
             } else {
+              console.log('Invalid token response, redirecting to login');
               router.navigate(['/login']);
-              return [];
+              return EMPTY; // Using EMPTY instead of [] for clarity
             }
           }),
-          catchError(() => {
+          catchError(refreshError => {
+            console.error('Error refreshing token:', refreshError);
             router.navigate(['/login']);
-            return [];
+            return EMPTY; // Using EMPTY instead of [] for clarity
           })
         );
       }
-      return [];
+
+      // For all other errors, let the error interceptor handle them
+      throw error;
     })
   );
 };
