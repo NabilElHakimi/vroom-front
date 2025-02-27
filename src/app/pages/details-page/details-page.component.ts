@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { VehicleDetailsComponent } from '../../components/vehicle-details/vehicle-details.component';
 import { VehicleCardComponent } from '../../components/vehicle-card/vehicle-card.component';
 import {NgClass, NgForOf, NgIf} from '@angular/common';
-import { Vehicle } from '../../../model/Vehicle';
-import { SuccesstoastService } from '../../../services/toast-service/successtoast.service';
-import { VehicleService } from '../../../services/vehicle-service/vehicle.service';
+import { Vehicle } from '../../model/Vehicle';
+import { SuccesstoastService } from '../../services/toast-service/successtoast.service';
+import { VehicleService } from '../../services/vehicle-service/vehicle.service';
 import { ActivatedRoute } from '@angular/router';
-import {CalendarComponent} from '../../../components/calendar/calendar.component';
+import {CalendarComponent} from '../../components/calendar/calendar.component';
 
 @Component({
   selector: 'app-details-page',

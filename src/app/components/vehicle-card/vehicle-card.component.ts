@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Vehicle} from '../../../model/Vehicle';
+import {Vehicle} from '../../model/Vehicle';
 import {NgIf} from '@angular/common';
 import {RouterLink} from '@angular/router';
 

@@ -9,7 +9,8 @@ import { NgClass, NgForOf } from '@angular/common';
 })
 export class CalendarComponent {
 
-  @Input() vehicleID : number = 0;
+  @Input() vehicleIDInputs : number = 0;
+
 
   currentDate: Date = new Date();
   daysInMonth: (number | null)[] = [];
@@ -97,6 +98,12 @@ export class CalendarComponent {
     return dayDate < new Date(this.today.getFullYear(), this.today.getMonth(), this.today.getDate());
   }
 
+
+
+  bookVehicle() {
+    console.log(`Vehicle ID: ${this.vehicleIDInputs}`);
+    console.log(`Selected period: ${this.selectedStartDate?.toDateString()} to ${this.selectedEndDate?.toDateString()}`);
+  }
 
 
 }

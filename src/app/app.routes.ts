@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import { HomePageComponent } from './client/pages/home-page/home-page.component';
-import { PageClientComponent } from './client/pages/page-client/page-client.component';
-import {DetailsPageComponent} from './client/pages/details-page/details-page.component';
+import { HomePageComponent } from './pages/home-page/home-page.component';
+import { PageClientComponent } from './pages/page-client/page-client.component';
+import {DetailsPageComponent} from './pages/details-page/details-page.component';
 import {LoginComponent} from './auth/login/login.component';
 import {RegisterComponent} from './auth/register/register.component';
 import {CalendarComponent} from './components/calendar/calendar.component';

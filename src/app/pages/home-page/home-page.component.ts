@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {CarouselHomeComponent} from '../../components/carousel-home/carousel-home.component';
 import {VehicleCardComponent} from '../../components/vehicle-card/vehicle-card.component';
-import {VehicleService} from '../../../services/vehicle-service/vehicle.service';
+import {VehicleService} from '../../services/vehicle-service/vehicle.service';
 import {NgForOf, NgIf} from '@angular/common';
-import {Vehicle} from '../../../model/Vehicle';
-import {SuccesstoastService} from '../../../services/toast-service/successtoast.service';
+import {Vehicle} from '../../model/Vehicle';
+import {SuccesstoastService} from '../../services/toast-service/successtoast.service';
 
 @Component({
   selector: 'app-home-page',

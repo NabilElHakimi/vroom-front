@@ -1,8 +1,8 @@
-import { Component, Input } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Vehicle } from '../../../model/Vehicle';
+import { Vehicle } from '../../model/Vehicle';
 import { FormsModule } from '@angular/forms';
-import { CalendarComponent } from '../../../components/calendar/calendar.component';
+import { CalendarComponent } from '../calendar/calendar.component';
 
 @Component({
   selector: 'app-vehicle-details',
@@ -14,6 +14,8 @@ import { CalendarComponent } from '../../../components/calendar/calendar.compone
 export class VehicleDetailsComponent {
   @Input() vehicle!: Vehicle;
   @Input() firstImage!: string | undefined;
+
+
 
   isModalOpen = false;
   currentImageIndex = 0;
