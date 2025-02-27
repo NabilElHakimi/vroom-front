@@ -6,3 +6,9 @@
   </div>
 
 </div>
+
+<app-pagination-component
+  [totalPages]="totalPages"
+  [currentPage]="currentPage"
+  (pageChange)="onPageChange($event)">
+</app-pagination-component>

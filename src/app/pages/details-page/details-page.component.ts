@@ -7,13 +7,15 @@ import { SuccesstoastService } from '../../services/toast-service/successtoast.s
 import { VehicleService } from '../../services/vehicle-service/vehicle.service';
 import { ActivatedRoute } from '@angular/router';
 import {CalendarComponent} from '../../components/calendar/calendar.component';
+import {PaginationComponentComponent} from '../../components/pagination-component/pagination-component.component';
 
 @Component({
   selector: 'app-details-page',
   imports: [
     VehicleDetailsComponent,
     VehicleCardComponent,
-    NgForOf
+    NgForOf,
+    PaginationComponentComponent
   ],
   templateUrl: './details-page.component.html',
   styleUrl: './details-page.component.css'
@@ -22,6 +24,9 @@ export class DetailsPageComponent implements OnInit {
 
   vehicles: Vehicle[] = [];
   vehicleFound: Vehicle | null = null;
+
+  totalPages: number = 1;
+  currentPage: number = 1;
 
   constructor(
     private vehicleService: VehicleService,
@@ -48,12 +53,19 @@ export class DetailsPageComponent implements OnInit {
     });
   }
 
-  getVehicle(): void {
-    this.vehicleService.getVehicle().subscribe((data: any) => {
+  getVehicle(page:number = 1): void {
+    this.vehicleService.getVehicle(page).subscribe((data: any) => {
       this.vehicles = data.content;
+      this.totalPages = data.totalPages;
+      this.currentPage = page;
+
     });
   }
 
+
+  onPageChange(newPage: number) {
+    this.getVehicle(newPage);
+  }
 
 
 }

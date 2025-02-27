@@ -10,8 +10,8 @@ export class VehicleService {
 
   constructor(private http :  HttpClient) { }
 
-  getVehicle(): Observable<any> {
-    return this.http.get(`${environment.API_URL}/vehicles/all`);
+  getVehicle(page:number = 1 ): Observable<any> {
+    return this.http.get(`${environment.API_URL}/vehicles/all?page=${page}`);
   }
 
   getVehicleById(id: any): Observable<any> {

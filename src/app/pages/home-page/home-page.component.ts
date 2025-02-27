@@ -1,41 +1,47 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { VehicleService } from '../../services/vehicle-service/vehicle.service';
+import { Vehicle } from '../../model/Vehicle';
+import { SuccesstoastService } from '../../services/toast-service/successtoast.service';
 import {CarouselHomeComponent} from '../../components/carousel-home/carousel-home.component';
 import {VehicleCardComponent} from '../../components/vehicle-card/vehicle-card.component';
-import {VehicleService} from '../../services/vehicle-service/vehicle.service';
-import {NgForOf, NgIf} from '@angular/common';
-import {Vehicle} from '../../model/Vehicle';
-import {SuccesstoastService} from '../../services/toast-service/successtoast.service';
+import {PaginationComponentComponent} from '../../components/pagination-component/pagination-component.component';
+import {NgForOf} from '@angular/common';
 
 @Component({
   selector: 'app-home-page',
+  templateUrl: './home-page.component.html',
   imports: [
     CarouselHomeComponent,
     VehicleCardComponent,
-    NgForOf,
-
+    PaginationComponentComponent,
+    NgForOf
   ],
-  templateUrl: './home-page.component.html',
-  styleUrl: './home-page.component.css'
+  styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
+  vehicles: Vehicle[] = [];
+  successToast: boolean = false;
+  message: string = '';
 
-  successToast : boolean = false;
-  message:string = '';
+  totalPages: number = 1;
+  currentPage: number = 1;
 
-  constructor(private vehicleService : VehicleService ,
-              private successToastService : SuccesstoastService) {
-
-  }
-
-  vehicles: Vehicle[] = [] ;
+  constructor(
+    private vehicleService: VehicleService,
+    private successToastService: SuccesstoastService
+  ) {}
 
   ngOnInit(): void {
-        this.getVehicle();
-    }
+    this.getVehicle();
+  }
 
-  getVehicle(): void {
-    this.vehicleService.getVehicle().subscribe((data: any) => {
+  getVehicle(page : number = 1): void {
+    this.vehicleService.getVehicle(page).subscribe((data: any) => {
+
       this.vehicles = data.content;
+      this.totalPages = data.totalPages;
+
+      this.currentPage = page;
 
       this.successToast = true;
       setTimeout(() => {
@@ -45,8 +51,9 @@ export class HomePageComponent implements OnInit {
     });
   }
 
-
-
+  onPageChange(newPage: number) {
+    this.getVehicle(newPage);
+  }
 
 
 }
