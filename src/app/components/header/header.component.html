@@ -1,15 +1,16 @@
-<nav class="fixed top-0 left-0 right-0 z-30 bg-white dark:bg-gray-800/70 bg-opacity-90 backdrop-blur-md ">
+<nav class="fixed top-0 left-0 right-0 z-30 bg-white dark:bg-gray-800/70 bg-opacity-90 backdrop-blur-md">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
       <div class="flex-shrink-0">
         <a href="/client/home" class="text-black font-bold text-2xl">
-          <img class="w-32 " src="https://imgs.search.brave.com/f-qquiVja-j3J7XsuV8Ec7ye8oWRdkJUcL7wPaBGCPQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy80/LzQ2L1Zyb29tbG9n/by5wbmc">
+          <img class="w-32" src="https://imgs.search.brave.com/f-qquiVja-j3J7XsuV8Ec7ye8oWRdkJUcL7wPaBGCPQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy80/LzQ2L1Zyb29tbG9n/by5wbmc">
         </a>
       </div>
 
 
       <div class="hidden md:block z-50">
         <div class="ml-4 flex items-center md:ml-6">
+
           <a href="#" class="text-sm font-medium dark:text-white text-gray-900 hover:text-gray-600 px-3 py-2 rounded-md transition-colors duration-300">Shop</a>
           <a href="#" class="text-sm font-medium dark:text-white text-gray-900 hover:text-gray-600 px-3 py-2 rounded-md transition-colors duration-300">Account</a>
           <a href="#" class="text-sm font-medium dark:text-white text-gray-900 hover:text-gray-600 px-3 py-2 rounded-md transition-colors duration-300">Menu</a>
@@ -29,46 +30,71 @@
 
           </button>
 
-          <button (click)="logout()"  class="text-sm font-medium dark:text-red-400 text-red-400 hover:text-red-500 px-3 py-2 rounded-md transition-colors duration-300">
+          <button
+            (click)="leaderAlert()"
+            class="text-sm font-medium dark:bg-blue-600 bg-blue-500 ml-2 dark:text-gray-100 hover:bg-blue-700 text-white  px-3 py-2 rounded-md transition-colors duration-300">
+            + List Your Car
+          </button>
+
+          <button (click)="logout()" class="text-sm font-medium dark:bg-red-600 bg-red-500 ml-2 dark:text-gray-100 hover:bg-red-700 text-white  px-3 py-2 rounded-md transition-colors duration-300">
             Logout
           </button>
 
         </div>
-
       </div>
-      <div class="md:hidden">
 
-        <button   class="inline-flex items-center justify-center p-2 rounded-md text-gray-900 dark:text-white hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+      <div class="md:hidden">
+        <button (click)="toggleMobileMenu()" class="inline-flex items-center justify-center p-2 rounded-md text-gray-900 dark:text-white hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
           <span class="sr-only">Open main menu</span>
-          <svg id="menu-icon" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg *ngIf="!mobileMenuOpen" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M3 12h18M3 6h18M3 18h18"></path>
           </svg>
-          <svg id="close-icon" class="h-6 w-6 hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg *ngIf="mobileMenuOpen" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M6 18L18 6M6 6l12 12"></path>
           </svg>
         </button>
-
       </div>
     </div>
   </div>
 
-  <div id="menu" class="md:hidden hidden">
+  <div *ngIf="mobileMenuOpen" class="md:hidden">
     <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-      <a href="#" class="text-gray-900 hover:text-gray-600 block px-3 py-2 rounded-md text-base font-medium">Model S</a>
-      <a href="#" class="text-gray-900 hover:text-gray-600 block px-3 py-2 rounded-md text-base font-medium">Model 3</a>
-      <a href="#" class="text-gray-900 hover:text-gray-600 block px-3 py-2 rounded-md text-base font-medium">Model X</a>
-      <a href="#" class="text-gray-900 hover:text-gray-600 block px-3 py-2 rounded-md text-base font-medium">Model Y</a>
-      <a href="#" class="text-gray-900 hover:text-gray-600 block px-3 py-2 rounded-md text-base font-medium">Solar Roof</a>
-      <a href="#" class="text-gray-900 hover:text-gray-600 block px-3 py-2 rounded-md text-base font-medium">Solar Panels</a>
-      <a href="#" class="text-gray-900 hover:text-gray-600 block px-3 py-2 rounded-md text-base font-medium">Shop</a>
-      <a href="#" class="text-gray-900 hover:text-gray-600 block px-3 py-2 rounded-md text-base font-medium">Account</a>
+      <a  class="text-gray-900 dark:text-white hover:text-gray-600 block px-3 py-2 rounded-md text-base font-medium">Model S</a>
+      <a  class="text-gray-900 dark:text-white hover:text-gray-600 block px-3 py-2 rounded-md text-base font-medium">Model 3</a>
+      <a  class="text-gray-900 dark:text-white hover:text-gray-600 block px-3 py-2 rounded-md text-base font-medium">Model X</a>
+      <a  class="text-gray-900 dark:text-white hover:text-gray-600 block px-3 py-2 rounded-md text-base font-medium">Model Y</a>
+      <a  class="text-gray-900 dark:text-white hover:text-gray-600 block px-3 py-2 rounded-md text-base font-medium">Solar Roof</a>
+      <a  class="text-gray-900 dark:text-white hover:text-gray-600 block px-3 py-2 rounded-md text-base font-medium">Solar Panels</a>
+      <a  class="text-gray-900 dark:text-white hover:text-gray-600 block px-3 py-2 rounded-md text-base font-medium">Shop</a>
+      <a  class="text-gray-900 dark:text-white hover:text-gray-600 block px-3 py-2 rounded-md text-base font-medium">Account</a>
+      <div class="text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-300 block px-3 py-2 rounded-md text-base">
+        <div class="flex items-center space-x-2"
+             (click)="toggleTheme()">
+          <span>Dark Mode:</span>
+          <button
+            class="h-10 w-10 rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300 flex items-center justify-center">
+
+            <!-- Icône pour le mode sombre (lune) -->
+            <svg *ngIf="!isDarkMode()" class="fill-violet-700 block dark:hidden" fill="currentColor" viewBox="0 0 20 20" width="20" height="20">
+              <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+            </svg>
+
+            <!-- Icône pour le mode clair (soleil) -->
+            <svg *ngIf="isDarkMode()" class="fill-yellow-500 hidden dark:block" fill="currentColor" viewBox="0 0 20 20" width="20" height="20">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z">
+              </path>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+
     </div>
   </div>
 </nav>
 
 
-
-
-
-
+<app-logout-alert-component *ngIf="logoutAlert" [(logoutAlert)]="logoutAlert"></app-logout-alert-component>
+<app-leader-proposition-alert *ngIf="leaderPropositionAlert" [(leaderPropositionAlert)] = "leaderPropositionAlert"></app-leader-proposition-alert>
 

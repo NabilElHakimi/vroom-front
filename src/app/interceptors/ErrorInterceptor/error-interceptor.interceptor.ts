@@ -14,9 +14,9 @@ export const errorInterceptorInterceptor: HttpInterceptorFn = (req, next) => {
 
   return next(req).pipe(
     catchError(error => {
-      // Skip handling 403 errors - let the auth interceptor handle them
+
       if (error.status === 403) {
-        throw error;  // Re-throw the error to be caught by the auth interceptor
+        throw error;
       }
 
       let errorMessage = 'An unexpected error occurred!';

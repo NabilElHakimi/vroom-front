@@ -4,7 +4,9 @@ import { PageClientComponent } from './pages/page-client/page-client.component';
 import {DetailsPageComponent} from './pages/details-page/details-page.component';
 import {LoginComponent} from './auth/login/login.component';
 import {RegisterComponent} from './auth/register/register.component';
-import {CalendarComponent} from './components/calendar/calendar.component';
+import {
+  LeaderPropositionAlertComponent
+} from './components/leader-proposition-alert/leader-proposition-alert.component';
 
 export const routes: Routes = [
   {
@@ -36,10 +38,6 @@ export const routes: Routes = [
   {
     path : 'register',
     component : RegisterComponent
-  },
-  {
-    path: 'calendar',
-    component : CalendarComponent
   }
 
 
