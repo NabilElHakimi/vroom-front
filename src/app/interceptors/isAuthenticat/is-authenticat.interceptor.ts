@@ -27,7 +27,6 @@ export const isAuthenticatInterceptor: HttpInterceptorFn = (req, next) => {
 
         return authService.refreshToken().pipe(
           switchMap((newToken: any) => {
-            console.log('Token refresh response:', newToken);
 
             if (newToken && newToken.token) {
               console.log('New token received, updating and retrying request');
@@ -41,18 +40,17 @@ export const isAuthenticatInterceptor: HttpInterceptorFn = (req, next) => {
             } else {
               console.log('Invalid token response, redirecting to login');
               router.navigate(['/login']);
-              return EMPTY; // Using EMPTY instead of [] for clarity
+              return EMPTY;
             }
           }),
           catchError(refreshError => {
             console.error('Error refreshing token:', refreshError);
             router.navigate(['/login']);
-            return EMPTY; // Using EMPTY instead of [] for clarity
+            return EMPTY;
           })
         );
       }
 
-      // For all other errors, let the error interceptor handle them
       throw error;
     })
   );
