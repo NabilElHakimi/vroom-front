@@ -7,6 +7,7 @@ import {RegisterComponent} from './auth/register/register.component';
 import {FirstLocationFormComponent} from './components/first-location-form/first-location-form.component';
 import {WelcomeLeaderComponent} from './components/welcome-leader/welcome-leader.component';
 import {MyLocationsComponent} from './components/my-locations/my-locations.component';
+import {LocationPageComponent} from './pages/location-page/location-page.component';
 
 export const routes: Routes = [
   {
@@ -38,6 +39,10 @@ export const routes: Routes = [
       {
         path : 'my-locations',
         component : MyLocationsComponent
+      },
+      {
+        path : 'location/:id',
+        component : LocationPageComponent
       }
 
     ]
