@@ -1,7 +1,7 @@
 import {Vehicle} from './Vehicle';
 
-export interface VehicleLocation {
-  id: number;
+export interface LocationWithVehicles {
+  id?: number;
   name: string;
   address: string;
   city: string;

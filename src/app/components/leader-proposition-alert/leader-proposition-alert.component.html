@@ -19,7 +19,7 @@
     <div class="p-6 pt-0 text-center">
       <!-- Animated SVG Icon -->
       <svg
-        class="w-20 h-20 text-blue-600 mx-auto animate-bounce"
+        class="w-20 h-20 text-red-600 mx-auto animate-bounce"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
@@ -35,7 +35,7 @@
 
       <!-- Modal Title -->
       <h3 class="text-2xl font-semibold text-gray-800 dark:text-white mt-5 mb-6">
-        Become a Leader on <span class="text-blue-600">Vroom</span>!
+        Become a Leader on <span class="text-red-600">Vroom</span>!
       </h3>
 
       <p class="text-gray-600 dark:text-gray-300 mb-6">
@@ -45,10 +45,13 @@
       <!-- Action Buttons -->
       <div class="flex justify-center space-x-4">
         <a
-          class="cursor-pointer text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-base inline-flex items-center px-5 py-2.5 text-center transition-all duration-200 transform hover:scale-105"
+          [routerLink]="['welcome-leader']"
+          class="cursor-pointer text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-base inline-flex items-center px-5 py-2.5 text-center transition-all duration-200 transform hover:scale-105"
+          (click)="closeAlert()"
         >
           Yes, I want to be a leader
         </a>
+
         <a
           (click)="closeAlert()"
           class="cursor-pointer text-gray-900 bg-white hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 border border-gray-200 font-medium rounded-lg text-base inline-flex items-center px-5 py-2.5 text-center transition-all duration-200 transform hover:scale-105"

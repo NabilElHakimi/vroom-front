@@ -1,0 +1,88 @@
+<div class="h-screen flex justify-center items-center bg-gradient-to-r from-blue-500 to-green-500 p-6">
+  <div class="max-w-lg w-full bg-white dark:bg-gray-800 rounded-lg shadow-xl p-8">
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-white text-center">
+      Add Your First LocationWithVehicles 🏢
+    </h2>
+
+    <!-- Form -->
+    <form (ngSubmit)="onSubmit()">
+      <div class="space-y-4 mt-6">
+
+        <!-- Name Field -->
+        <div>
+          <label for="name" class="block text-base font-medium text-gray-900 dark:text-white">LocationWithVehicles Name</label>
+          <input
+            [(ngModel)]="location.name"
+            type="text"
+            id="name"
+            name="name"
+            required
+            class="mt-2 w-full px-4 py-2 border border-gray-300 rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-600 dark:bg-gray-700 dark:text-white dark:border-gray-600"
+          />
+        </div>
+
+        <!-- Address Field -->
+        <div>
+          <label for="address" class="block text-base font-medium text-gray-900 dark:text-white">Address</label>
+          <input
+            [(ngModel)]="location.address"
+            type="text"
+            id="address"
+            name="address"
+            required
+            class="mt-2 w-full px-4 py-2 border border-gray-300 rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-600 dark:bg-gray-700 dark:text-white dark:border-gray-600"
+          />
+        </div>
+
+        <!-- City Field -->
+        <div>
+          <label for="city" class="block text-base font-medium text-gray-900 dark:text-white">City</label>
+          <input
+            [(ngModel)]="location.city"
+            type="text"
+            id="city"
+            name="city"
+            required
+            class="mt-2 w-full px-4 py-2 border border-gray-300 rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-600 dark:bg-gray-700 dark:text-white dark:border-gray-600"
+          />
+        </div>
+
+        <!-- Telephone Field -->
+        <div>
+          <label for="telephone" class="block text-base font-medium text-gray-900 dark:text-white">Telephone</label>
+          <input
+            [(ngModel)]="location.telephone"
+            type="tel"
+            id="telephone"
+            name="telephone"
+            required
+            class="mt-2 w-full px-4 py-2 border border-gray-300 rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-600 dark:bg-gray-700 dark:text-white dark:border-gray-600"
+          />
+        </div>
+
+        <!-- Email Field -->
+        <div>
+          <label for="email" class="block text-base font-medium text-gray-900 dark:text-white">Email</label>
+          <input
+            [(ngModel)]="location.email"
+            type="email"
+            id="email"
+            name="email"
+            required
+            class="mt-2 w-full px-4 py-2 border border-gray-300 rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-600 dark:bg-gray-700 dark:text-white dark:border-gray-600"
+          />
+        </div>
+
+        <!-- Submit Button -->
+        <div class="mt-6 text-center">
+          <button
+            type="submit"
+            class="bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg px-4 py-2 text-lg transition-all duration-300 ease-in-out transform hover:scale-105"
+          >
+            Save LocationWithVehicles
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

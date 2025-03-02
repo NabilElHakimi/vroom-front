@@ -1,6 +1,6 @@
 import {ArticleImage} from './ArticleImage';
 import {UserDetails} from './UserDetails';
-import {VehicleLocation} from './VehicleLocation';
+import {LocationWithVehicles} from './LocationWithVehicles';
 
 export interface Vehicle {
   id: number;
@@ -23,7 +23,7 @@ export interface Vehicle {
   isPublished: boolean;
   isArchived: boolean;
   // reservations: Reservation[];
-  location: VehicleLocation;
+  location: LocationWithVehicles;
   createdAt: string;
   updatedAt: string;
 

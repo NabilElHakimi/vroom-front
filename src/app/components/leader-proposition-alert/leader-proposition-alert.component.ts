@@ -1,11 +1,13 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {NgIf} from "@angular/common";
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-leader-proposition-alert',
-    imports: [
-        NgIf
-    ],
+  imports: [
+    NgIf,
+    RouterLink
+  ],
   templateUrl: './leader-proposition-alert.component.html',
   styleUrl: './leader-proposition-alert.component.css'
 })

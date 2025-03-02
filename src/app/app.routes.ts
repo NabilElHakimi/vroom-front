@@ -4,9 +4,9 @@ import { PageClientComponent } from './pages/page-client/page-client.component';
 import {DetailsPageComponent} from './pages/details-page/details-page.component';
 import {LoginComponent} from './auth/login/login.component';
 import {RegisterComponent} from './auth/register/register.component';
-import {
-  LeaderPropositionAlertComponent
-} from './components/leader-proposition-alert/leader-proposition-alert.component';
+import {FirstLocationFormComponent} from './components/first-location-form/first-location-form.component';
+import {WelcomeLeaderComponent} from './components/welcome-leader/welcome-leader.component';
+import {MyLocationsComponent} from './components/my-locations/my-locations.component';
 
 export const routes: Routes = [
   {
@@ -27,6 +27,18 @@ export const routes: Routes = [
         path: 'details/:id',
         component :DetailsPageComponent
       },
+      {
+        path: 'welcome-leader',
+        component :WelcomeLeaderComponent
+      },
+      {
+        path : 'first-location',
+        component : FirstLocationFormComponent
+      },
+      {
+        path : 'my-locations',
+        component : MyLocationsComponent
+      }
 
     ]
   },
@@ -39,6 +51,9 @@ export const routes: Routes = [
     path : 'register',
     component : RegisterComponent
   }
-
+  ,{
+    path : 'test',
+    component : MyLocationsComponent
+  }
 
 ];

@@ -1,0 +1,47 @@
+<div class=" h-screen flex justify-center items-center bg-gradient-to-r from-blue-500 to-green-500 p-6">
+  <div class="max-w-lg w-full bg-white dark:bg-gray-800 rounded-lg shadow-xl p-8 text-center">
+    <h2 class="text-3xl font-extrabold text-gray-900 dark:text-white">
+      Welcome, Leader! 🌟
+    </h2>
+    <p class="text-gray-600 dark:text-gray-300 mt-2 text-lg">
+      You’re about to take the first step towards becoming a leader in car rentals.
+      Let's add your first rental location to get started! 🚗💨
+    </p>
+
+    <svg class="w-24 h-24 text-blue-600 dark:text-green-500 mx-auto mt-8 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+    </svg>
+
+    <!-- Motivational Text -->
+    <p class="mt-6 text-xl font-medium text-gray-800 dark:text-white">
+      Your journey starts with a single location.
+    </p>
+
+    <!-- Add LocationWithVehicles Button -->
+    <div class="mt-8">
+      <a
+        [routerLink]="['/client/first-location']"
+        class="bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg px-8 py-3 text-lg transition-all duration-300 ease-in-out transform hover:scale-105"
+      >
+        Add My First LocationWithVehicles 🏢
+      </a>
+    </div>
+
+    <!-- Cancel Text Link -->
+    <div class="mt-4">
+      <a
+        href="#"
+        (click)="goBack()"
+        class="text-gray-500 dark:text-gray-400 text-sm hover:text-gray-800 dark:hover:text-gray-300"
+      >
+        Cancel 🚫
+      </a>
+
+    </div>
+
+    <!-- Optional additional info or CTA -->
+    <p class="text-gray-500 dark:text-gray-400 mt-4 text-sm">
+      This is your chance to make a mark in the car rental world. 🚙
+    </p>
+  </div>
+</div>
