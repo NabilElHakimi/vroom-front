@@ -16,4 +16,9 @@ export class LocationService {
     return this.http.post<Location>(`${environment.API_URL}/location`, location);
   }
 
+  getLocations(): Observable<Location[]> {
+    return this.http.get<Location[]>(`${environment.API_URL}/location/find-by-user`);
+  }
+
+
 }
