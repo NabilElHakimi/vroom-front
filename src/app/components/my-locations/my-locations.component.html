@@ -6,7 +6,7 @@
     </div>
 
     <div class="p-5">
-      <div class="space-y-4">
+      <div class="space-y-4" *ngFor="let lo of locations">
         <div class="rounded-lg overflow-hidden shadow-md transition-all hover:shadow-lg cursor-pointer dark:bg-gray-700 bg-white border dark:border-gray-600 border-gray-200">
           <div class="p-4 flex items-center">
             <div class="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center mr-4">
@@ -16,13 +16,11 @@
               </svg>
             </div>
             <div>
-              <h3 class="text-lg font-medium dark:text-white text-gray-800">Hakimi Car</h3>
-              <p class="text-xl font-bold dark:text-blue-300 text-blue-600">Rabat</p>
+              <h3 class="text-lg font-medium dark:text-white text-gray-800">{{lo.name}}</h3>
+              <p class="text-xl font-bold dark:text-blue-300 text-blue-600">{{lo.city}}</p>
             </div>
           </div>
         </div>
-
-
     </div>
 
     <!-- Modal Footer -->
