@@ -20,5 +20,8 @@ export class LocationService {
     return this.http.get<Location[]>(`${environment.API_URL}/location/find-by-user`);
   }
 
+  getLocationById(id: number): Observable<LocationWithVehicles> {
+    return this.http.get<LocationWithVehicles>(`${environment.API_URL}/location/${id}`);
+  }
 
 }

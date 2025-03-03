@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { Vehicle } from '../../model/Vehicle';
 import { FormsModule } from '@angular/forms';
 import { CalendarComponent } from '../calendar/calendar.component';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-vehicle-details',
   standalone: true,
-  imports: [CommonModule, FormsModule, CalendarComponent],
+  imports: [CommonModule, FormsModule, CalendarComponent, RouterLink],
   templateUrl: './vehicle-details.component.html',
   styleUrls: ['./vehicle-details.component.css']
 })
