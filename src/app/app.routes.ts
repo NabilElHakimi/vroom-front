@@ -8,6 +8,7 @@ import {FirstLocationFormComponent} from './components/first-location-form/first
 import {WelcomeLeaderComponent} from './components/welcome-leader/welcome-leader.component';
 import {MyLocationsComponent} from './components/my-locations/my-locations.component';
 import {LocationPageComponent} from './pages/location-page/location-page.component';
+import {AddVehicleModalComponent} from './components/add-vehicle-modal/add-vehicle-modal.component';
 
 export const routes: Routes = [
   {
@@ -58,7 +59,7 @@ export const routes: Routes = [
   }
   ,{
     path : 'test',
-    component : MyLocationsComponent
+    component : AddVehicleModalComponent
   }
 
 ];

@@ -1,13 +1,22 @@
-<div class="min-h-screen mt-6 ">
+<div class="min-h-screen mt-6 relative">
   <app-location-info [location]="location" ></app-location-info>
+
 
 
   <div class="mt-8">
     <div  class="w-full flex justify-center">
       <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3  px-3 max-w-6xl">
+
         <app-vehicle-card *ngFor="let v of location?.vehicles" [vehicle]="v"></app-vehicle-card>
+
       </div>
     </div>
 
   </div>
 </div>
+
+<app-add-button (click)="modalAddVehicle()" title="Add new Vehicle"></app-add-button>
+<app-add-vehicle-modal *ngIf="addVehicleModal" (close)="closeModal()"></app-add-vehicle-modal>
+
+
+
