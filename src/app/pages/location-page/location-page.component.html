@@ -16,7 +16,7 @@
 </div>
 
 <app-add-button (click)="modalAddVehicle()" title="Add new Vehicle"></app-add-button>
-<app-add-vehicle-modal *ngIf="addVehicleModal" (close)="closeModal()"></app-add-vehicle-modal>
+<app-add-vehicle-modal *ngIf="addVehicleModal" (close)="closeModal()" [locationId]="locationId"></app-add-vehicle-modal>
 
 
 
