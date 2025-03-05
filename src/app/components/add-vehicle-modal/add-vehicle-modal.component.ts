@@ -1,24 +1,34 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { NgForOf, NgIf } from '@angular/common';
 import { Vehicle } from '../../model/Vehicle';
+import {FormsModule} from '@angular/forms';
+import {AddVehicle} from '../../model/AddVehicle';
+import {VehicleService} from '../../services/vehicle-service/vehicle.service';
+import {SuccesstoastService} from '../../services/toast-service/successtoast.service';
 
 @Component({
   selector: 'app-add-vehicle-modal',
   imports: [
     NgForOf,
-    NgIf
+    NgIf,
+    FormsModule
   ],
   templateUrl: './add-vehicle-modal.component.html',
   styleUrls: ['./add-vehicle-modal.component.css']
 })
 export class AddVehicleModalComponent implements OnInit{
 
-  ngOnInit(): void {
-    console.log(this.locationId)
+
+  constructor(private vehicleService: VehicleService ,
+              private toast : SuccesstoastService) {
   }
 
   @Input() locationId: number = 0 ;
   @Output() close = new EventEmitter<void>();
+
+  ngOnInit(): void {
+    console.log(this.locationId)
+  }
 
   fileCount: number = 0;
   selectedFiles: File[] = [];
@@ -26,7 +36,7 @@ export class AddVehicleModalComponent implements OnInit{
   maxImages = 5;
   minImages = 3;
 
-  vehicle:Vehicle = {}
+  vehicle: AddVehicle = {}
 
   closeModal() {
     this.close.emit();
@@ -64,6 +74,19 @@ export class AddVehicleModalComponent implements OnInit{
 
   removeImage(index: number): void {
     this.imagePreviews.splice(index, 1);
-    this.fileCount = this.imagePreviews.length;  // Update file count
+    this.fileCount = this.imagePreviews.length;
   }
+
+  onSubmit() {
+        this.vehicle.locationId = this.locationId;
+        console.log(this.vehicle)
+        console.log(this.selectedFiles)
+        this.vehicleService.addVehicle(this.vehicle, this.selectedFiles).subscribe(
+          (response) => {
+            this.toast.showToast('Vehicle added successfully' , 'success');
+            this.closeModal();
+          }
+        );
+  }
+
 }

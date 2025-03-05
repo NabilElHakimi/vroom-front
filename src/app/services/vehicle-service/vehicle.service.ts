@@ -18,4 +18,17 @@ export class VehicleService {
     return this.http.get(`${environment.API_URL}/vehicles/find/${id}`);
   }
 
+  addVehicle(vehicle: any, images: File[]): Observable<any> {
+    const formData: FormData = new FormData();
+
+    formData.append('vehicle', JSON.stringify(vehicle));
+
+    images.forEach((image) => {
+      formData.append('images', image, image.name);
+    });
+
+    return this.http.post(`${environment.API_URL}/vehicles`, formData);
+  }
+
+
 }

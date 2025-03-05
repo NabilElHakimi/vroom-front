@@ -61,8 +61,6 @@ export class LocationPageComponent  implements OnInit{
 
   closeModal(): void {
     this.addVehicleModal = false;
+    this.getLocationById(this.locationId);
   }
-
-
-  protected readonly close = close;
 }
