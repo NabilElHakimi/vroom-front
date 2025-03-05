@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { NgForOf, NgIf } from '@angular/common';
+import { Vehicle } from '../../model/Vehicle';
 
 @Component({
   selector: 'app-add-vehicle-modal',
@@ -24,6 +25,8 @@ export class AddVehicleModalComponent implements OnInit{
   imagePreviews: string[] = [];
   maxImages = 5;
   minImages = 3;
+
+  vehicle:Vehicle = {}
 
   closeModal() {
     this.close.emit();
