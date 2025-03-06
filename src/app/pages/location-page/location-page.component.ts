@@ -17,8 +17,7 @@ import {DeleteConfirmationComponent} from '../../components/delete-confirmation/
     NgIf,
     VehicleCardComponent,
     AddButtonComponent,
-    AddVehicleModalComponent,
-    DeleteConfirmationComponent
+    AddVehicleModalComponent
   ],
   templateUrl: './location-page.component.html',
   styleUrl: './location-page.component.css'
@@ -67,5 +66,10 @@ export class LocationPageComponent  implements OnInit{
     this.getLocationById(this.locationId);
   }
 
+  isLeader(): boolean {
+
+    return localStorage.getItem('role') == 'LEADER'
+      && this.location?.user?.username == localStorage.getItem('username');
+  }
 
 }
