@@ -41,6 +41,8 @@ export class HeaderComponent {
     this.leaderPropositionAlert = true;
   }
 
-
+  isClient(): boolean {
+    return localStorage.getItem('role') === 'CLIENT';
+  }
 
 }

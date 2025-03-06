@@ -2,17 +2,22 @@ import {Component, Input} from '@angular/core';
 import {Vehicle} from '../../model/Vehicle';
 import {NgIf} from '@angular/common';
 import {RouterLink} from '@angular/router';
+import {DeleteConfirmationComponent} from '../delete-confirmation/delete-confirmation.component';
 
 @Component({
   selector: 'app-vehicle-card',
   imports: [
     NgIf,
-    RouterLink
+    RouterLink,
+    DeleteConfirmationComponent
   ],
   templateUrl: './vehicle-card.component.html',
   styleUrl: './vehicle-card.component.css'
 })
 export class VehicleCardComponent {
+
+
+  modalIsOpen :boolean = false;
 
   @Input() vehicle!: Vehicle;
 
@@ -28,5 +33,13 @@ export class VehicleCardComponent {
     return createdAtDate >= sevenDaysAgo;
   }
 
+  isLeader(): boolean {
+    return this.vehicle.userDetails.username == localStorage.getItem('username');
+  }
+
+
+  openDeleteModal(): void {
+    this.modalIsOpen = true;
+  }
 
 }

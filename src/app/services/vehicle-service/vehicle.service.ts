@@ -31,4 +31,8 @@ export class VehicleService {
   }
 
 
+  deleteVehicle(id: any): Observable<any> {
+    return this.http.delete(`${environment.API_URL}/vehicles/archive/${id}`);
+  }
+
 }

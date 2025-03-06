@@ -7,6 +7,7 @@ import {NgForOf, NgIf} from '@angular/common';
 import {VehicleCardComponent} from '../../components/vehicle-card/vehicle-card.component';
 import {AddButtonComponent} from '../../components/add-button/add-button.component';
 import {AddVehicleModalComponent} from '../../components/add-vehicle-modal/add-vehicle-modal.component';
+import {DeleteConfirmationComponent} from '../../components/delete-confirmation/delete-confirmation.component';
 
 @Component({
   selector: 'app-location-page',
@@ -16,7 +17,8 @@ import {AddVehicleModalComponent} from '../../components/add-vehicle-modal/add-v
     NgIf,
     VehicleCardComponent,
     AddButtonComponent,
-    AddVehicleModalComponent
+    AddVehicleModalComponent,
+    DeleteConfirmationComponent
   ],
   templateUrl: './location-page.component.html',
   styleUrl: './location-page.component.css'
@@ -31,6 +33,7 @@ export class LocationPageComponent  implements OnInit{
 
   locationId  = 0 ;
   location : LocationWithVehicles | undefined;
+  modalIsOpen :boolean = false;
 
   addVehicleModal = false;
 
@@ -63,4 +66,6 @@ export class LocationPageComponent  implements OnInit{
     this.addVehicleModal = false;
     this.getLocationById(this.locationId);
   }
+
+
 }

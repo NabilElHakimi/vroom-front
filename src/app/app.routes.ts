@@ -9,6 +9,7 @@ import {WelcomeLeaderComponent} from './components/welcome-leader/welcome-leader
 import {MyLocationsComponent} from './components/my-locations/my-locations.component';
 import {LocationPageComponent} from './pages/location-page/location-page.component';
 import {AddVehicleModalComponent} from './components/add-vehicle-modal/add-vehicle-modal.component';
+import {DeleteConfirmationComponent} from './components/delete-confirmation/delete-confirmation.component';
 
 export const routes: Routes = [
   {
@@ -59,7 +60,7 @@ export const routes: Routes = [
   }
   ,{
     path : 'test',
-    component : AddVehicleModalComponent
+    component : DeleteConfirmationComponent
   }
 
 ];

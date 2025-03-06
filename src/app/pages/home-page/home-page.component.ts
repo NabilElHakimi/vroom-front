@@ -55,5 +55,4 @@ export class HomePageComponent implements OnInit {
     this.getVehicle(newPage);
   }
 
-
 }

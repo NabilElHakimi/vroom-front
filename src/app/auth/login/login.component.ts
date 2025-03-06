@@ -38,6 +38,8 @@ export class LoginComponent  {
       tap((res: any) => {
         if (res.token) {
           localStorage.setItem('token', res.token);
+          localStorage.setItem('username', res.username);
+          localStorage.setItem('role', res.role);
           this.toast.showToast('Login Successful', 'success');
           this.router.navigate(['/client/home']);
         } else {
