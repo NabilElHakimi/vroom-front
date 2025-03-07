@@ -48,13 +48,11 @@ export class LocationPageComponent  implements OnInit{
 
     });
 
-
     }
 
     getLocationById(id: number): void {
       this.locationService.getLocationById(id).subscribe(location => {
         this.location = location ;
-        console.log('Location:', this.location);
       });
     }
 

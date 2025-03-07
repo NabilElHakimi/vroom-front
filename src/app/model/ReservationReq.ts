@@ -1,7 +1,9 @@
-export interface Reservation{
+import {Vehicle} from './Vehicle';
+
+export interface ReservationReq{
 
   id?: number
-  vehicleId?: string,
+  vehicle?: Vehicle,
   startDate?: string | undefined,
   endDate?: string | undefined
   status?: string | undefined

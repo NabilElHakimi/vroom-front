@@ -1,9 +1,8 @@
 import {Component, Input} from '@angular/core';
 import { NgClass, NgForOf } from '@angular/common';
-import {CalendarService} from '../../services/calendar-service/calendar.service';
 import {Reservation} from '../../model/Reservation';
 import {SuccesstoastService} from '../../services/toast-service/successtoast.service';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {ReservtionService} from '../../services/reservation-service/reservtion.service';
 
 @Component({
   selector: 'app-calendar',
@@ -13,7 +12,7 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 })
 export class CalendarComponent {
 
-  constructor(private calendarService: CalendarService ,
+  constructor(private calendarService: ReservtionService ,
               private toast:SuccesstoastService) {
     this.generateCalendar();
   }

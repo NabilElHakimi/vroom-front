@@ -2,7 +2,7 @@
   <app-location-info [location]="location" ></app-location-info>
 
   <div class="w-full  flex justify-center items-center text-white py-2 gap-3 mt-10">
-    <p class="bg-red-600 py-2 px-5 rounded-full hover:bg-red-700 cursor-pointer shadow-lg">
+    <p routerLink="/client/location-reservation/{{locationId}}" class="bg-red-600 py-2 px-5 rounded-full hover:bg-red-700 cursor-pointer shadow-lg">
         Reservations
     </p>
     <p routerLink="/client/my-locations" class="bg-red-600 py-2 px-5 rounded-full shadow-lg hover:bg-red-700 cursor-pointer">
