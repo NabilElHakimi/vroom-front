@@ -62,12 +62,15 @@
           </td>
 
           <!-- Start Date -->
-          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400"
+          title="Total Days : {{ calculateTotalDays(res.startDate, res.endDate) || '-' }}">
+
             {{ res.startDate ? (res.startDate | date) : '-' }}
           </td>
 
           <!-- End Date -->
-          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400"
+              title="Total Days : {{ calculateTotalDays(res.startDate, res.endDate) || '-' }}">
             {{ res.endDate ? (res.endDate | date) : '-' }}
           </td>
 

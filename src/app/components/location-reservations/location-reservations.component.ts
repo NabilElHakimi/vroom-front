@@ -70,4 +70,14 @@ export class LocationReservationsComponent implements OnInit {
       });
     }
   }
+
+
+  calculateTotalDays(startDate: string | undefined, endDate: string | undefined): number {
+    if (!startDate || !endDate) return 0;
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    const timeDifference = end.getTime() - start.getTime();
+    return Math.ceil(timeDifference / (1000 * 3600 * 24));
+  }
+
 }
