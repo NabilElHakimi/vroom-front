@@ -1,7 +1,14 @@
 <div class="min-h-screen mt-6 relative">
   <app-location-info [location]="location" ></app-location-info>
 
-
+  <div class="w-full  flex justify-center items-center text-white py-2 gap-3 mt-10">
+    <p class="bg-red-600 py-2 px-5 rounded-full hover:bg-red-700 cursor-pointer shadow-lg">
+        Reservations
+    </p>
+    <p routerLink="/client/my-locations" class="bg-red-600 py-2 px-5 rounded-full shadow-lg hover:bg-red-700 cursor-pointer">
+      My Locations
+    </p>
+  </div>
 
   <div class="mt-8">
     <div  class="w-full flex justify-center">
@@ -10,11 +17,12 @@
         <app-vehicle-card *ngFor="let v of location?.vehicles" [vehicle]="v"></app-vehicle-card>
 
       </div>
-    </div>
 
+    </div>
   </div>
 </div>
 
-<app-add-button (click)="modalAddVehicle()" title="Add new Vehicle"></app-add-button>
-<app-add-vehicle-modal *ngIf="addVehicleModal" (close)="closeModal()" [locationId]="locationId"></app-add-vehicle-modal>
+<app-add-button (click)="modalAddVehicle()" *ngIf="isLeader()"  title="Add new Vehicle"></app-add-button>
+
+<app-add-vehicle-modal  *ngIf="addVehicleModal" (close)="closeModal()" [locationId]="locationId"></app-add-vehicle-modal>
 

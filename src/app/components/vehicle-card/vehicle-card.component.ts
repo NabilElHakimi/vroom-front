@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Vehicle} from '../../model/Vehicle';
 import {NgIf} from '@angular/common';
 import {RouterLink} from '@angular/router';
@@ -16,11 +16,10 @@ import {DeleteConfirmationComponent} from '../delete-confirmation/delete-confirm
 })
 export class VehicleCardComponent {
 
-
   modalIsOpen :boolean = false;
+  @Output() vehicleDeleted = new EventEmitter<void>();
 
   @Input() vehicle!: Vehicle;
-
   isNewVehicle(): boolean {
     if (!this.vehicle || !this.vehicle.createdAt) {
       return false;
@@ -37,9 +36,10 @@ export class VehicleCardComponent {
     return this.vehicle.userDetails.username == localStorage.getItem('username');
   }
 
-
   openDeleteModal(): void {
     this.modalIsOpen = true;
   }
+
+
 
 }

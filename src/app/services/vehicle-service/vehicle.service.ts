@@ -35,4 +35,5 @@ export class VehicleService {
     return this.http.delete(`${environment.API_URL}/vehicles/archive/${id}`);
   }
 
+
 }

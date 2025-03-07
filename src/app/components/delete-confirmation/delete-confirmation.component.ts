@@ -52,5 +52,4 @@ export class DeleteConfirmationComponent implements OnInit {
     });
   }
 
-
 }

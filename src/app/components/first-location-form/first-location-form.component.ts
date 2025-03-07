@@ -32,6 +32,7 @@ export class FirstLocationFormComponent {
     this.locationService.addLocation(this.location).subscribe(
       () => {
         this.toast.showToast('Location added successfully', 'success');
+        localStorage.setItem('role' , 'LEADER');
         this.router.navigate(['/client/my-locations']);
       },
     );

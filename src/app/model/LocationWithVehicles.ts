@@ -1,4 +1,5 @@
 import {Vehicle} from './Vehicle';
+import {User} from './User';
 
 export interface LocationWithVehicles {
   id?: number;
@@ -8,5 +9,7 @@ export interface LocationWithVehicles {
   telephone: string;
   email: string;
   vehicles?: Vehicle[];
+  user?: User;
 
 }
+

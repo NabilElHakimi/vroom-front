@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {LocationInfoComponent} from '../../components/location-info/location-info.component';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import {LocationService} from '../../services/location-service/location.service';
 import {LocationWithVehicles} from '../../model/LocationWithVehicles';
 import {NgForOf, NgIf} from '@angular/common';
@@ -17,7 +17,8 @@ import {DeleteConfirmationComponent} from '../../components/delete-confirmation/
     NgIf,
     VehicleCardComponent,
     AddButtonComponent,
-    AddVehicleModalComponent
+    AddVehicleModalComponent,
+    RouterLink
   ],
   templateUrl: './location-page.component.html',
   styleUrl: './location-page.component.css'
