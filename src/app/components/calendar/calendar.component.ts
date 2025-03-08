@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {NgClass, NgForOf, NgIf} from '@angular/common';
 import {Reservation} from '../../model/Reservation';
 import {SuccesstoastService} from '../../services/toast-service/successtoast.service';
@@ -24,10 +24,14 @@ export class CalendarComponent {
     endDate: ""
   }
 
+  calendarIsOpen: boolean = true;
 
   @Input() vehicleIDInputs : number = 0;
+  @Output() close = new EventEmitter<void>();
 
-
+  closeModal() {
+    this.close.emit();
+  }
 
   currentDate: Date = new Date();
   daysInMonth: (number | null)[] = [];
@@ -123,6 +127,7 @@ export class CalendarComponent {
         .subscribe(() => {
           this.isLoading = false;
           this.toast.showToast('Reservation successful', 'success');
+          this.closeModal();
         });
     }
   }
