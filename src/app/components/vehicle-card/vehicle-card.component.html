@@ -1,4 +1,9 @@
-<div  class="max-w-sm mx-auto bg-gray-100/85  hover:bg-white dark:hover:bg-gray-800 shadow-lg dark:bg-gray-800/80 overflow-hidden rounded-lg">
+<div class="flex justify-start ">
+
+  <h1 class="bg-red-600 w-32 text-center rounded-t-xl ml-2 text-white font-bold">{{vehicle.location.name}}</h1>
+</div>
+
+<div  class="max-w-sm  mx-auto w-[46vh] bg-gray-100/85  hover:bg-white dark:hover:bg-gray-800 shadow-lg dark:bg-gray-800/80 overflow-hidden rounded-lg">
   <div class="relative">
     <img
       [src]="vehicle.articleImages?.[0]?.imageUrl"
@@ -6,18 +11,15 @@
       class="w-full h-48 object-cover"
     >
 
-    <div *ngIf="isNewVehicle()" class="absolute top-4 right-4 bg-red-500 text-white px-2 py-1 rounded-full text-sm font-semibold">
-      Nouveau
+    <div *ngIf="isNewVehicle()" class="absolute opacity-85 hover:opacity-100 top-2 right-4 bg-blue-500 text-white px-2 py-1 rounded-full text-sm font-semibold">
+      <span class="text-lg font-bold text-white">{{vehicle.price}} MAD</span>
     </div>
   </div>
 
   <div class="p-6">
-    <div class="flex justify-between items-center mb-3">
-      <h2 class="text-2xl font-bold text-gray-800 dark:text-white">{{vehicle.mark}}</h2>
-      <span class="text-lg font-bold text-red-500">{{vehicle.price}} MAD</span>
 
-    </div>
-
+    <h2 class="text-2xl font-bold text-red-500">{{vehicle.mark}}</h2>
+    <h3 class="text-xl font-bold text-gray-700 dark:text-gray-200">{{vehicle.model}}</h3>
 
     <p class="text-gray-600 mb-4 dark:text-white">
       {{vehicle.description}}
@@ -28,7 +30,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
         </svg>
-        <span>2023</span>
+        <span>{{vehicle.year}}</span>
       </div>
       <div class="flex items-center gap-2">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
@@ -40,7 +42,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
         </svg>
-        <span>585 ch</span>
+        <span>{{vehicle.fuelType}}</span>
       </div>
     </div>
 
