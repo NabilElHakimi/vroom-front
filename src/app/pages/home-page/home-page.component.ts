@@ -5,7 +5,8 @@ import { SuccesstoastService } from '../../services/toast-service/successtoast.s
 import {CarouselHomeComponent} from '../../components/carousel-home/carousel-home.component';
 import {VehicleCardComponent} from '../../components/vehicle-card/vehicle-card.component';
 import {PaginationComponentComponent} from '../../components/pagination-component/pagination-component.component';
-import {NgForOf} from '@angular/common';
+import {NgForOf, NgIf} from '@angular/common';
+import {LodaingComponentComponent} from '../../components/lodaing-component/lodaing-component.component';
 
 @Component({
   selector: 'app-home-page',
@@ -14,7 +15,9 @@ import {NgForOf} from '@angular/common';
     CarouselHomeComponent,
     VehicleCardComponent,
     PaginationComponentComponent,
-    NgForOf
+    NgForOf,
+    LodaingComponentComponent,
+    NgIf
   ],
   styleUrls: ['./home-page.component.css']
 })
@@ -25,6 +28,7 @@ export class HomePageComponent implements OnInit {
 
   totalPages: number = 1;
   currentPage: number = 1;
+  isLoading: boolean = false;
 
   constructor(
     private vehicleService: VehicleService,
@@ -36,8 +40,10 @@ export class HomePageComponent implements OnInit {
   }
 
   getVehicle(page : number = 1): void {
+    this.isLoading = true;
     this.vehicleService.getVehicle(page).subscribe((data: any) => {
 
+      this.isLoading = false;
       this.vehicles = data.content;
       this.totalPages = data.totalPages;
 

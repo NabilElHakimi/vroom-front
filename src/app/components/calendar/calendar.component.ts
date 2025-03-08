@@ -1,12 +1,13 @@
 import {Component, Input} from '@angular/core';
-import { NgClass, NgForOf } from '@angular/common';
+import {NgClass, NgForOf, NgIf} from '@angular/common';
 import {Reservation} from '../../model/Reservation';
 import {SuccesstoastService} from '../../services/toast-service/successtoast.service';
 import {ReservtionService} from '../../services/reservation-service/reservtion.service';
+import {LodaingComponentComponent} from "../lodaing-component/lodaing-component.component";
 
 @Component({
   selector: 'app-calendar',
-  imports: [NgClass, NgForOf ],
+    imports: [NgClass, NgForOf, LodaingComponentComponent, NgIf],
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.css'],
 })
@@ -40,6 +41,7 @@ export class CalendarComponent {
   selectedEndDate: Date | null = null;
 
   today: Date = new Date();
+  isLoading: boolean = false;
 
 
 
@@ -115,29 +117,13 @@ export class CalendarComponent {
 
 
   bookVehicle() {
-    // console.log(`Vehicle ID: ${this.vehicleIDInputs}`);
-    // console.log(`Selected period: ${this.selectedStartDate?.toDateString()} to ${this.selectedEndDate?.toDateString()}`);
-    //
-    // this.reservationModel.vehicleId = this.vehicleIDInputs.toString();
-    // this.reservationModel.startDate = this.selectedStartDate?.toDateString();
-    // this.reservationModel.endDate = this.selectedEndDate?.toDateString();
-    //
-    // console.log("Hadiiii model")
-    // console.log(this.reservationModel);
-    //
-
+    this.isLoading = true;
     if (this.selectedStartDate && this.selectedEndDate) {
       this.calendarService.addReservation(this.vehicleIDInputs, this.selectedStartDate, this.selectedEndDate)
         .subscribe(() => {
+          this.isLoading = false;
           this.toast.showToast('Reservation successful', 'success');
         });
     }
-
-
   }
-
-
-
-
-
 }

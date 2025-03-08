@@ -1,5 +1,8 @@
 <app-carousel-home></app-carousel-home>
 
+<div  class="text-center" *ngIf="isLoading">
+    <app-lodaing-component/>
+</div>
 
   <div class="w-full flex justify-center">
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3  px-3 max-w-6xl">

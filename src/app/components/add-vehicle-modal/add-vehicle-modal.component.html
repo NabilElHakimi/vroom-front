@@ -238,5 +238,15 @@
         </button>
       </div>
     </form>
+
   </div>
+
+  <div
+    *ngIf="isLoading"
+    class="text-center absolute w-screen h-screen flex justify-center items-center bg-black/70 backdrop-blur" >
+    <app-lodaing-component/>
+  </div>
+
 </div>
+
+

@@ -8,6 +8,7 @@ import { VehicleService } from '../../services/vehicle-service/vehicle.service';
 import { ActivatedRoute } from '@angular/router';
 import {CalendarComponent} from '../../components/calendar/calendar.component';
 import {PaginationComponentComponent} from '../../components/pagination-component/pagination-component.component';
+import {LodaingComponentComponent} from '../../components/lodaing-component/lodaing-component.component';
 
 @Component({
   selector: 'app-details-page',
@@ -16,7 +17,8 @@ import {PaginationComponentComponent} from '../../components/pagination-componen
     VehicleCardComponent,
     NgForOf,
     PaginationComponentComponent,
-    NgIf
+    NgIf,
+    LodaingComponentComponent
   ],
   templateUrl: './details-page.component.html',
   styleUrl: './details-page.component.css'

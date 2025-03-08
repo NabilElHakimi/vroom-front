@@ -5,13 +5,15 @@ import {FormsModule} from '@angular/forms';
 import {AddVehicle} from '../../model/AddVehicle';
 import {VehicleService} from '../../services/vehicle-service/vehicle.service';
 import {SuccesstoastService} from '../../services/toast-service/successtoast.service';
+import {LodaingComponentComponent} from '../lodaing-component/lodaing-component.component';
 
 @Component({
   selector: 'app-add-vehicle-modal',
   imports: [
     NgForOf,
     NgIf,
-    FormsModule
+    FormsModule,
+    LodaingComponentComponent
   ],
   templateUrl: './add-vehicle-modal.component.html',
   styleUrls: ['./add-vehicle-modal.component.css']
@@ -37,6 +39,7 @@ export class AddVehicleModalComponent implements OnInit{
   minImages = 3;
 
   vehicle: AddVehicle = {}
+  isLoading: boolean = false;
 
   closeModal() {
     this.close.emit();
@@ -78,14 +81,16 @@ export class AddVehicleModalComponent implements OnInit{
   }
 
   onSubmit() {
+        this.isLoading = true;
         this.vehicle.locationId = this.locationId;
-        console.log(this.vehicle)
-        console.log(this.selectedFiles)
+
         this.vehicleService.addVehicle(this.vehicle, this.selectedFiles).subscribe(
           (response) => {
             this.toast.showToast('Vehicle added successfully' , 'success');
             this.closeModal();
+            this.isLoading = false;
           }
+
         );
   }
 
