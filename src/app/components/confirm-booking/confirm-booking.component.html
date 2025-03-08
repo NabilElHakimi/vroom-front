@@ -1,0 +1,48 @@
+<div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4 rounded shadow-md" role="alert">
+  <div class="flex items-center">
+    <div class="flex-shrink-0">
+      <svg class="h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+      </svg>
+    </div>
+    <div class="ml-3">
+      <p class="text-sm font-medium">Booking Confirmed!</p>
+    </div>
+  </div>
+
+  <div class="mt-2">
+    <p class="text-sm">Your reservation (ID: {{reservation.id}}) has been successfully booked.</p>
+
+    <div class="mt-2 grid grid-cols-2 gap-x-4 text-xs">
+      <div>
+        <span class="font-semibold block">Start Date:</span>
+        <span>{{reservation.startDate | date:'mediumDate'}}</span>
+      </div>
+      <div>
+        <span class="font-semibold block">End Date:</span>
+        <span>{{reservation.endDate | date:'mediumDate'}}</span>
+      </div>
+      <div class="mt-2">
+        <span class="font-semibold block">Duration:</span>
+        <span>{{calculateDays(reservation.startDate, reservation.endDate)}} days</span>
+      </div>
+      <div class="mt-2">
+        <span class="font-semibold block">Total Price:</span>
+        <span>{{reservation.totalPrice | currency}}</span>
+      </div>
+    </div>
+
+    <div class="mt-3 flex justify-between">
+      <button
+        class="px-3 py-1 text-xs bg-green-600 text-white rounded hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
+        (click)="viewDetails(reservation.id)">
+        View Details
+      </button>
+      <button
+        class="px-3 py-1 text-xs bg-gray-200 text-gray-700 rounded hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400"
+        (click)="closeAlert()">
+        Dismiss
+      </button>
+    </div>
+  </div>
+</div>

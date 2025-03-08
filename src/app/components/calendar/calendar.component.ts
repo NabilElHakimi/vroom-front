@@ -4,17 +4,18 @@ import {Reservation} from '../../model/Reservation';
 import {SuccesstoastService} from '../../services/toast-service/successtoast.service';
 import {ReservtionService} from '../../services/reservation-service/reservtion.service';
 import {LodaingComponentComponent} from "../lodaing-component/lodaing-component.component";
+import {ConfirmBookingComponent} from '../confirm-booking/confirm-booking.component';
 
 @Component({
   selector: 'app-calendar',
-    imports: [NgClass, NgForOf, LodaingComponentComponent, NgIf],
+  imports: [NgClass, NgForOf, LodaingComponentComponent, NgIf, ConfirmBookingComponent, ConfirmBookingComponent],
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.css'],
 })
 export class CalendarComponent {
 
-  constructor(private calendarService: ReservtionService ,
-              private toast:SuccesstoastService) {
+  constructor(private calendarService: ReservtionService,
+              private toast: SuccesstoastService) {
     this.generateCalendar();
   }
 
@@ -24,9 +25,13 @@ export class CalendarComponent {
     endDate: ""
   }
 
+  // New properties for confirmation handling
+  showConfirmation: boolean = false;
+  confirmedReservation: Reservation = {};
+
   calendarIsOpen: boolean = true;
 
-  @Input() vehicleIDInputs : number = 0;
+  @Input() vehicleIDInputs: number = 0;
   @Output() close = new EventEmitter<void>();
 
   closeModal() {
@@ -46,8 +51,6 @@ export class CalendarComponent {
 
   today: Date = new Date();
   isLoading: boolean = false;
-
-
 
   generateCalendar(): void {
     const year = this.currentDate.getFullYear();
@@ -118,17 +121,43 @@ export class CalendarComponent {
     return dayDate < new Date(this.today.getFullYear(), this.today.getMonth(), this.today.getDate());
   }
 
-
-
   bookVehicle() {
     this.isLoading = true;
     if (this.selectedStartDate && this.selectedEndDate) {
       this.calendarService.addReservation(this.vehicleIDInputs, this.selectedStartDate, this.selectedEndDate)
-        .subscribe(() => {
+        .subscribe((response) => {
           this.isLoading = false;
+
+          // Create the confirmed reservation object with all details
+          this.confirmedReservation = {
+            id: response.id, // Assuming the API response includes an id
+            vehicleId: this.vehicleIDInputs.toString(),
+            startDate: this.selectedStartDate?.toISOString(),
+            endDate: this.selectedEndDate?.toISOString(),
+            status: 'Confirmed',
+            totalPrice: response.totalPrice // Assuming the API response includes a totalPrice
+          };
+
+          // Show the confirmation component
+          this.showConfirmation = true;
+
+          // Still show the toast for users who might be familiar with it
           this.toast.showToast('Reservation successful', 'success');
-          this.closeModal();
         });
     }
+  }
+
+  // New methods to handle confirmation actions
+  hideConfirmation() {
+    this.showConfirmation = false;
+    this.closeModal();
+  }
+
+  navigateToDetails(reservationId: number | undefined) {
+    // Handle navigation to details page
+    console.log(`Navigating to details for reservation ${reservationId}`);
+    this.showConfirmation = false;
+    this.closeModal();
+    // Add your navigation code here
   }
 }
