@@ -9,11 +9,10 @@
 
       <div class="hidden md:block z-50">
         <div class="ml-4 flex items-center md:ml-6">
-
           <a
             *ngIf="!isClient()"
             routerLink = "my-locations" class="text-sm font-medium dark:text-white text-gray-900 hover:text-gray-600 px-3 py-2 rounded-md transition-colors duration-300">My Locations</a>
-          <a href="#" class="text-sm font-medium dark:text-white text-gray-900 hover:text-gray-600 px-3 py-2 rounded-md transition-colors duration-300">Account</a>
+          <a routerLink="profile/{{userName}}" class="text-sm font-medium dark:text-white text-gray-900 hover:text-gray-600 px-3 py-2 rounded-md transition-colors duration-300">Account</a>
           <a href="#" class="text-sm font-medium dark:text-white text-gray-900 hover:text-gray-600 px-3 py-2 rounded-md transition-colors duration-300">Menu</a>
           <button
             (click)="toggleTheme()"

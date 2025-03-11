@@ -18,6 +18,7 @@ export class HeaderComponent {
   mobileMenuOpen = false;
   logoutAlert   = false;
   leaderPropositionAlert = false;
+  userName: string|null = localStorage.getItem('username');
 
 
   toggleMobileMenu() {
@@ -44,5 +45,6 @@ export class HeaderComponent {
   isClient(): boolean {
     return localStorage.getItem('role') === 'CLIENT';
   }
+
 
 }

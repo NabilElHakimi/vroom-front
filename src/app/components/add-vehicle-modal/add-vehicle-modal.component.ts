@@ -81,17 +81,53 @@ export class AddVehicleModalComponent implements OnInit{
   }
 
   onSubmit() {
-        this.isLoading = true;
-        this.vehicle.locationId = this.locationId;
+    if (!this.validation()) return; // Stop execution if validation fails
 
-        this.vehicleService.addVehicle(this.vehicle, this.selectedFiles).subscribe(
-          (response) => {
-            this.toast.showToast('Vehicle added successfully' , 'success');
-            this.closeModal();
-            this.isLoading = false;
-          }
+    this.isLoading = true;
+    this.vehicle.locationId = this.locationId;
 
-        );
+    this.vehicleService.addVehicle(this.vehicle, this.selectedFiles).subscribe(
+      (response) => {
+        this.toast.showToast('Vehicle added successfully', 'success');
+        this.closeModal();
+        this.isLoading = false;
+      },
+      (error) => {
+        this.toast.showToast('Error adding vehicle', 'error');
+        this.isLoading = false;
+      }
+    );
   }
+
+  validation(): boolean {
+    if (!this.vehicle?.mark?.trim() || this.vehicle.mark.length < 3) {
+      this.toast.showToast('Name is required and must be at least 3 characters', 'error');
+      return false;
+    }
+
+    if (!this.vehicle?.price || this.vehicle.price <= 0) {
+      this.toast.showToast('Price is required and must be a positive number', 'error');
+      return false;
+    }
+
+    if (!this.vehicle?.description?.trim() || this.vehicle.description.length < 3) {
+      this.toast.showToast('Description is required and must be at least 3 characters', 'error');
+      return false;
+    }
+
+    if (!this.vehicle?.fuelType) {
+      this.toast.showToast('Type is required', 'error');
+      return false;
+    }
+
+    if(this.selectedFiles.length < 3){
+      this.toast.showToast('You must select at least 3 images', 'error');
+      return false;
+    }
+
+    return true;
+  }
+
+
 
 }

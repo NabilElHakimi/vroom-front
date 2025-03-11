@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { catchError, Observable, throwError } from 'rxjs';
 import { AuthResponse } from '../../model/AuthResponse';
 import { User } from '../../model/User';
+import {UserDetails} from '../../model/UserDetails';
+import {Profile} from '../../model/Profile';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +33,11 @@ export class AuthService {
   logout(): Observable<any> {
     return this.http.post(
       `${environment.API_URL}/auth/logout`, {} , { withCredentials: true });
+  }
+
+  getProfile(username: string | null): Observable<Profile> {
+    const params = new HttpParams().set('username', username || '');
+    return this.http.get<Profile>(`${environment.API_URL}/user/profile`, { params, withCredentials: true });
   }
 
 }

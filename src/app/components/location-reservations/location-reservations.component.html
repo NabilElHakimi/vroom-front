@@ -11,6 +11,9 @@
             ID
           </th>
           <th class="px-6 py-3 text-left text-xs font-medium text-gray-50 dark:text-black uppercase tracking-wider">
+            Reserved by
+          </th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-50 dark:text-black uppercase tracking-wider">
             Mark
           </th>
           <th class="px-6 py-3 text-left text-xs font-medium text-gray-50 dark:text-black uppercase tracking-wider">
@@ -44,6 +47,9 @@
           <!-- Reservation ID -->
           <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
             {{ res.id || '-' }}
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-300">
+            {{ (res.user?.first_name || '-') + ' ' + (res.user?.last_name || '-') }}
           </td>
 
           <!-- Vehicle Mark -->

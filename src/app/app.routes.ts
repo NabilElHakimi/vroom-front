@@ -11,6 +11,7 @@ import {LocationPageComponent} from './pages/location-page/location-page.compone
 import {AddVehicleModalComponent} from './components/add-vehicle-modal/add-vehicle-modal.component';
 import {DeleteConfirmationComponent} from './components/delete-confirmation/delete-confirmation.component';
 import {LocationReservationsComponent} from './components/location-reservations/location-reservations.component';
+import {MyProfileComponent} from './components/my-profile/my-profile.component';
 
 export const routes: Routes = [
   {
@@ -50,10 +51,13 @@ export const routes: Routes = [
       {
         path : 'location-reservation/:id',
         component : LocationReservationsComponent
+      },
+      {
+        path : 'profile/:username',
+        component : MyProfileComponent
       }
     ]
   },
-
   {
     path : 'login',
     component : LoginComponent
@@ -64,7 +68,7 @@ export const routes: Routes = [
   }
   ,{
     path : 'test',
-    component :  LoginComponent
+    component :  MyProfileComponent
   }
 
 ];

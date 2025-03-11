@@ -4,7 +4,7 @@ import { LocationWithVehicles } from '../../model/LocationWithVehicles';
 import { ActivatedRoute } from '@angular/router';
 import { LocationService } from '../../services/location-service/location.service';
 import { ReservtionService } from '../../services/reservation-service/reservtion.service';
-import { ReservationReq } from '../../model/ReservationReq';
+import { ReservationRes } from '../../model/ReservationRes';
 import { DatePipe, NgClass, NgForOf, NgIf } from '@angular/common';
 import { SuccesstoastService } from '../../services/toast-service/successtoast.service';
 
@@ -15,7 +15,7 @@ import { SuccesstoastService } from '../../services/toast-service/successtoast.s
   styleUrl: './location-reservations.component.css',
 })
 export class LocationReservationsComponent implements OnInit {
-  reservations: ReservationReq[] = [];
+  reservations: ReservationRes[] = [];
   locationId = 0;
   location: LocationWithVehicles | undefined;
 
@@ -52,12 +52,12 @@ export class LocationReservationsComponent implements OnInit {
   }
 
   private padReservations(
-    reservations: ReservationReq[],
+    reservations: ReservationRes[],
     targetLength: number
-  ): ReservationReq[] {
+  ): ReservationRes[] {
     const paddedReservations = [...reservations];
     while (paddedReservations.length < targetLength) {
-      paddedReservations.push({} as ReservationReq);
+      paddedReservations.push({} as ReservationRes);
     }
     return paddedReservations;
   }
