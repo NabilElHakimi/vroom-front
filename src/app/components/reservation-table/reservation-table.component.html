@@ -1,0 +1,109 @@
+<div class="mt-8 flex justify-center">
+  <div class="w-full max-w-6xl overflow-x-auto">
+    <table class="min-w-full bg-white dark:bg-slate-800 rounded-lg shadow-lg overflow-hidden">
+      <!-- Table Header -->
+      <thead class="bg-gray-100 dark:bg-slate-700">
+      <tr class="bg-gray-800 dark:bg-gray-200">
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-50 dark:text-black uppercase tracking-wider">
+          ID
+        </th>
+
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-50 dark:text-black uppercase tracking-wider">
+          Mark
+        </th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-50 dark:text-black uppercase tracking-wider">
+          Model
+        </th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-50 dark:text-black uppercase tracking-wider">
+          Matriculation
+        </th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-50 dark:text-black uppercase tracking-wider">
+          Start Date
+        </th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-50 dark:text-black uppercase tracking-wider">
+          End Date
+        </th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-50 dark:text-black uppercase tracking-wider">
+          Status
+        </th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-50 dark:text-black uppercase tracking-wider">
+          Total Price
+        </th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-50 dark:text-black uppercase tracking-wider">
+          Actions
+        </th>
+      </tr>
+      </thead>
+
+      <!-- Table Body -->
+      <tbody class="divide-y divide-gray-200 dark:divide-slate-700">
+      <!-- Loop through 10 rows -->
+      <tr *ngFor="let res of reservations" class="hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors duration-200">
+<!--         Reservation ID -->
+        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
+          {{ res.id || '-' }}
+        </td>
+<!--        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-300">-->
+<!--          {{ (res.user?.first_name || '-') + ' ' + (res.user?.last_name || '-') }}-->
+<!--        </td>-->
+
+        <!-- Vehicle Mark -->
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400 cursor-pointer"
+        title="Show Car" routerLink="/client/details/{{ res.vehicle?.id }}">
+          {{ res.vehicle?.mark || '-' }}
+        </td>
+
+        <!-- Vehicle Model -->
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">
+          {{ res.vehicle?.model || '-' }}
+        </td>
+
+        <!-- Vehicle Matriculation -->
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">
+          {{ res.vehicle?.codeCar || '-' }}
+        </td>
+
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400"
+            title="Total Days : {{ calculateTotalDaysBetween(res.startDate, res.endDate) || '-' }}">
+
+          {{ res.startDate ? (res.startDate | date) : '-' }}
+        </td>
+
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400"
+            title="Total Days : {{ calculateTotalDaysBetween(res.startDate, res.endDate) || '-' }}">
+          {{ res.endDate ? (res.endDate | date) : '-' }}
+        </td>
+
+        <!-- Status -->
+        <td class="px-6 py-4 whitespace-nowrap">
+              <span *ngIf="res.status" [ngClass]="{
+                'bg-yellow-500': res.status === 'PENDING',
+                'bg-green-500': res.status === 'COMPLETED',
+                'bg-red-500': res.status === 'REJECTED',
+                'bg-blue-500': res.status === 'APPROVED',
+                'bg-gray-500': res.status === 'CANCELLED',
+                'bg-purple-500': res.status === 'EXPIRED'
+
+              }" class="px-3 py-1 rounded-full text-sm font-medium text-white shadow-md">
+                {{ res.status }}
+              </span>
+          <span *ngIf="!res.status">-</span>
+        </td>
+
+        <td class="px-6 py-4 whitespace-nowrap text-base font-semibold text-green-900 dark:text-green-500"
+            title="Total Days : {{ calculateTotalDaysBetween(res.startDate, res.endDate) || '-' }}">
+          {{ res.totalPrice ? res.totalPrice + ' MAD' : '-' }}
+        </td>
+
+
+        <td class="px-6 py-4 whitespace-nowrap text-sm">
+              <span *ngIf="res.status === 'PENDING'" (click)="changeStatus(res.id, 'CANCELLED')" class="px-3 py-1 rounded-full text-sm font-medium bg-red-500 text-white shadow-md cursor-pointer">
+                  CANCELLED
+              </span>
+        </td>
+
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
