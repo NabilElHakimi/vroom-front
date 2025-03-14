@@ -25,7 +25,6 @@ export class CalendarComponent {
     endDate: ""
   }
 
-  // New properties for confirmation handling
   showConfirmation: boolean = false;
   confirmedReservation: Reservation = {};
 
@@ -128,36 +127,31 @@ export class CalendarComponent {
         .subscribe((response) => {
           this.isLoading = false;
 
-          // Create the confirmed reservation object with all details
           this.confirmedReservation = {
-            id: response.id, // Assuming the API response includes an id
+            id: response.id,
             vehicleId: this.vehicleIDInputs.toString(),
             startDate: this.selectedStartDate?.toISOString(),
             endDate: this.selectedEndDate?.toISOString(),
             status: 'Confirmed',
-            totalPrice: response.totalPrice // Assuming the API response includes a totalPrice
+            totalPrice: response.totalPrice
           };
 
-          // Show the confirmation component
           this.showConfirmation = true;
 
-          // Still show the toast for users who might be familiar with it
           this.toast.showToast('Reservation successful', 'success');
         });
     }
   }
 
-  // New methods to handle confirmation actions
   hideConfirmation() {
     this.showConfirmation = false;
     this.closeModal();
   }
 
   navigateToDetails(reservationId: number | undefined) {
-    // Handle navigation to details page
     console.log(`Navigating to details for reservation ${reservationId}`);
     this.showConfirmation = false;
     this.closeModal();
-    // Add your navigation code here
   }
+
 }
