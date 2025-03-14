@@ -23,4 +23,8 @@ export class ReservtionService {
   changeStatus(id: number | undefined , status : string) : Observable<any> {
     return this.http.put(`${environment.API_URL}/reservations/update-status/${id}?status=${status}`, {});
   }
+
+  getReservationsByCarId(vehicleIDInputs: number) : Observable<any> {
+    return this.http.get(`${environment.API_URL}/reservations/get-by-vehicle/${vehicleIDInputs}`);
+  }
 }

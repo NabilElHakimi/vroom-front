@@ -1,16 +1,24 @@
-<div class="w-screen h-screen flex items-center justify-center bg-black/60 z-40 fixed top-0 dark:bg-black/80"
-     *ngIf="calendarIsOpen">
+<div
+  class="w-screen h-screen flex items-center justify-center bg-black/60 z-40 fixed top-0 dark:bg-black/80"
+  *ngIf="calendarIsOpen">
   <div class="w-[80vw] h-[65vh] bg-gray-200 dark:bg-gray-800 shadow-lg rounded-lg flex flex-col">
-
     <!-- Calendar Header -->
     <div class="flex items-center justify-between px-6 py-2 bg-gray-800 text-white dark:bg-gray-700">
-      <button (click)="previousMonth()" class="hover:bg-red-700 p-2 rounded-full dark:hover:bg-red-800">
+      <button
+        (click)="previousMonth()"
+        class="hover:bg-red-700 p-2 rounded-full dark:hover:bg-red-800"
+        aria-label="Previous Month">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
         </svg>
       </button>
+
       <span class="text-lg font-semibold">{{ getCurrentMonthYear() }}</span>
-      <button (click)="nextMonth()" class="hover:bg-red-700 p-2 rounded-full dark:hover:bg-red-800">
+
+      <button
+        (click)="nextMonth()"
+        class="hover:bg-red-700 p-2 rounded-full dark:hover:bg-red-800"
+        aria-label="Next Month">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
         </svg>
@@ -19,18 +27,23 @@
 
     <!-- Calendar Body -->
     <div class="flex-grow p-4 grid grid-cols-7 gap-1 text-center overflow-hidden">
-      <div *ngFor="let weekday of weekdays" class="font-semibold text-gray-600 dark:text-gray-300">
+      <!-- Weekday Headers -->
+      <div
+        *ngFor="let weekday of weekdays"
+        class="font-semibold text-gray-600 dark:text-gray-300">
         {{ weekday }}
       </div>
 
+      <!-- Day Cells -->
       <div
         *ngFor="let day of daysInMonth"
-        class="p-4 text-black dark:text-white"
+        class="p-4 text-center text-black dark:text-white relative"
         [ngClass]="{
           'text-gray-400 dark:text-gray-500': !day || isDayDisabled(day),
           'cursor-pointer hover:bg-red-300 dark:hover:bg-red-500': day && !isDayDisabled(day),
           'bg-red-400 dark:bg-red-500': isDayInSelectedPeriod(day),
-          'cursor-not-allowed opacity-50 dark:opacity-40': isDayDisabled(day)
+          'cursor-not-allowed opacity-50 dark:opacity-40': isDayDisabled(day),
+          'line-through bg-red-100 text-red-500': isDayReserved(day)
         }"
         (click)="selectDay(day)">
         {{ day || '' }}
@@ -41,12 +54,13 @@
     <div class="p-4 flex justify-center" *ngIf="!showConfirmation">
       <button
         (click)="bookVehicle()"
-        class="bg-red-500 text-white px-6 py-2 rounded-full hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700">
-        Reserve
+        [disabled]="!selectedStartDate || !selectedEndDate"
+        class="bg-red-500 text-white px-6 py-2 rounded-full hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed">
+        {{ selectedStartDate && selectedEndDate ? 'Reserve' : 'Select Dates' }}
       </button>
     </div>
 
-    <!-- Booking Confirmation Alert (shown when showConfirmation is true) -->
+    <!-- Booking Confirmation Alert -->
     <div class="p-4" *ngIf="showConfirmation">
       <app-confirm-booking
         [reservation]="confirmedReservation"
@@ -60,6 +74,6 @@
 <!-- Loading overlay -->
 <div
   *ngIf="isLoading"
-  class="text-center absolute w-screen h-screen flex justify-center items-center bg-black/70 backdrop-blur">
+  class="fixed inset-0 bg-black/70 backdrop-blur z-50 flex justify-center items-center">
   <app-lodaing-component/>
 </div>
