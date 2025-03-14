@@ -6,6 +6,7 @@ import { AuthResponse } from '../../model/AuthResponse';
 import { User } from '../../model/User';
 import {UserDetails} from '../../model/UserDetails';
 import {Profile} from '../../model/Profile';
+import {Register} from '../../model/Register';
 
 @Injectable({
   providedIn: 'root'
@@ -40,4 +41,8 @@ export class AuthService {
     return this.http.get<Profile>(`${environment.API_URL}/user/profile`, { params, withCredentials: true });
   }
 
+  register(registerForm: Register) {
+    return this.http.post(`${environment.API_URL}/auth/register`, registerForm);
+
+  }
 }
