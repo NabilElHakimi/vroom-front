@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { NgForOf, NgIf } from '@angular/common';
 import { Vehicle } from '../../model/Vehicle';
 import {FormsModule} from '@angular/forms';
-import {AddVehicle} from '../../model/AddVehicle';
+import {VehicleRequest} from '../../model/VehicleRequest';
 import {VehicleService} from '../../services/vehicle-service/vehicle.service';
 import {SuccesstoastService} from '../../services/toast-service/successtoast.service';
 import {LodaingComponentComponent} from '../lodaing-component/lodaing-component.component';
@@ -38,7 +38,7 @@ export class AddVehicleModalComponent implements OnInit{
   maxImages = 5;
   minImages = 3;
 
-  vehicle: AddVehicle = {}
+  vehicle: VehicleRequest = {}
   isLoading: boolean = false;
 
   closeModal() {

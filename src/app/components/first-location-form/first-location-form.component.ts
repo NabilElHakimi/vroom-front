@@ -5,6 +5,7 @@ import {FormsModule} from '@angular/forms';
 import {SuccessToastComponent} from '../success-toast/success-toast.component';
 import {SuccesstoastService} from '../../services/toast-service/successtoast.service';
 import {Router} from '@angular/router';
+import {LocationWithOutVehicles} from '../../model/LocationWithOutVehicles';
 
 @Component({
   selector: 'app-first-location-form',
@@ -20,13 +21,7 @@ export class FirstLocationFormComponent {
               private toast : SuccesstoastService,
               private router:Router) {}
 
-  location: LocationWithVehicles = {
-    name: '',
-    address: '',
-    city: '',
-    telephone: '',
-    email: ''
-  }
+  location: LocationWithOutVehicles = {}
 
   onSubmit() {
     this.locationService.addLocation(this.location).subscribe(

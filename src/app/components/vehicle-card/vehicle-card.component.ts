@@ -1,25 +1,29 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Vehicle} from '../../model/Vehicle';
-import {NgIf} from '@angular/common';
+import {JsonPipe, NgIf} from '@angular/common';
 import {RouterLink} from '@angular/router';
 import {DeleteConfirmationComponent} from '../delete-confirmation/delete-confirmation.component';
+import {UpdateVehicleModalComponent} from '../update-vehicle-modal/update-vehicle-modal.component';
 
 @Component({
   selector: 'app-vehicle-card',
   imports: [
     NgIf,
     RouterLink,
-    DeleteConfirmationComponent
+    DeleteConfirmationComponent,
+    UpdateVehicleModalComponent,
   ],
   templateUrl: './vehicle-card.component.html',
   styleUrl: './vehicle-card.component.css'
 })
 export class VehicleCardComponent {
 
+  updateModalIsOpen: boolean = false;
   modalIsOpen :boolean = false;
-  @Output() vehicleDeleted = new EventEmitter<void>();
-
+  @Output() vehicleDeleted = new EventEmitter<string>();
   @Input() vehicle!: Vehicle;
+
+
   isNewVehicle(): boolean {
     if (!this.vehicle || !this.vehicle.createdAt) {
       return false;
@@ -30,6 +34,7 @@ export class VehicleCardComponent {
     sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
 
     return createdAtDate >= sevenDaysAgo;
+
   }
 
   isLeader(): boolean {
@@ -40,6 +45,13 @@ export class VehicleCardComponent {
     this.modalIsOpen = true;
   }
 
+  onDelete(vehicleId: string) {
+    console.log('Vehicle Card : ' + vehicleId);
+    this.vehicleDeleted.emit(vehicleId);
+  }
 
 
+  openUpdateModal() {
+    this.updateModalIsOpen = true;
+  }
 }

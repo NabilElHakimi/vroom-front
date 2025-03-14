@@ -64,9 +64,18 @@
         Plus
       </button>
 
-      <button *ngIf="isLeader()"  title="Update" class="flex-1 border dark:text-white border-blue-500 text-blue-500 py-2 px-4 rounded-lg font-semibold dark:hover:bg-blue-700 hover:bg-blue-50 transition-colors">
+      <button *ngIf="isLeader()"
+              (click)="openUpdateModal()"
+              title="Update" class="flex-1 border dark:text-white border-blue-500 text-blue-500 py-2 px-4 rounded-lg font-semibold dark:hover:bg-blue-700 hover:bg-blue-50 transition-colors">
         Update
       </button>
+
+    <app-update-vehicle-modal *ngIf="updateModalIsOpen"
+                              (vehicleModal)="updateModalIsOpen = false"
+                            [vehicle]="vehicle"
+    >
+    </app-update-vehicle-modal>
+
 
       <button
         (click)="openDeleteModal()"
@@ -78,4 +87,4 @@
   </div>
 </div>
 
-<app-delete-confirmation *ngIf="modalIsOpen" [(modalIsOpen)] = "modalIsOpen" vehicleId="{{vehicle.id}}" ></app-delete-confirmation>
+<app-delete-confirmation *ngIf="modalIsOpen" [(modalIsOpen)] = "modalIsOpen" vehicleId="{{vehicle.id}} " (confirmDelete)="onDelete($event)"></app-delete-confirmation>

@@ -50,15 +50,15 @@ export class LocationPageComponent  implements OnInit{
 
     }
 
-    getLocationById(id: number): void {
-      this.locationService.getLocationById(id).subscribe(location => {
-        this.location = location ;
-      });
-    }
+  getLocationById(id: number): void {
+    this.locationService.getLocationById(id).subscribe(location => {
+      this.location = location ;
+    });
+  }
 
-    modalAddVehicle(): void {
-      this.addVehicleModal = true;
-    }
+  modalAddVehicle(): void {
+    this.addVehicleModal = true;
+  }
 
   closeModal(): void {
     this.addVehicleModal = false;
@@ -66,9 +66,12 @@ export class LocationPageComponent  implements OnInit{
   }
 
   isLeader(): boolean {
-
     return localStorage.getItem('role') == 'LEADER'
       && this.location?.user?.username == localStorage.getItem('username');
   }
 
+
+  reloadData() {
+    this.getLocationById(this.locationId);
+  }
 }

@@ -22,7 +22,7 @@ export class DeleteConfirmationComponent implements OnInit {
 
   @Input() modalIsOpen = false;
   @Input() vehicleId: string = "";
-  @Output() confirmDelete = new EventEmitter<void>();
+  @Output() confirmDelete = new EventEmitter<string>()
 
   id: string | null = "";
 
@@ -45,9 +45,8 @@ export class DeleteConfirmationComponent implements OnInit {
 
     this.vehicleService.deleteVehicle(this.vehicleId).subscribe(() => {
       this.toast.showToast('Vehicle deleted successfully', 'success');
-      this.confirmDelete.emit();
-
-      window.location.reload()
+      this.confirmDelete.emit(this.vehicleId);
+      console.log("from delete component");
 
     });
   }

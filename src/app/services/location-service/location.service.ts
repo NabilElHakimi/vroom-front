@@ -4,6 +4,7 @@ import { environment } from '../../../environments/environment';
 import {Location} from '@angular/common';
 import {Observable} from 'rxjs';
 import {LocationWithVehicles} from '../../model/LocationWithVehicles';
+import {LocationWithOutVehicles} from '../../model/LocationWithOutVehicles';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class LocationService {
 
   constructor(private http: HttpClient) { }
 
-  addLocation(location: LocationWithVehicles): Observable<Location> {
+  addLocation(location: LocationWithOutVehicles): Observable<Location> {
     return this.http.post<Location>(`${environment.API_URL}/location`, location);
   }
 

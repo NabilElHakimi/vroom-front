@@ -2,7 +2,8 @@ import {ArticleImage} from './ArticleImage';
 import {UserDetails} from './UserDetails';
 import {LocationWithVehicles} from './LocationWithVehicles';
 
-export interface AddVehicle {
+export interface VehicleRequest {
+  id?: string;
   mark?: string;
   model?: string;
   codeCar?: string;
