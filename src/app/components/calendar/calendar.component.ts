@@ -21,11 +21,9 @@ export class CalendarComponent implements OnInit {
     this.generateCalendar();
   }
 
-  // Reservation-related properties
   reservedDates: Date[] = [];
   reservation: ReservationRes = {};
 
-  // Calendar-related properties
   currentDate: Date = new Date();
   daysInMonth: (number | null)[] = [];
   weekdays: string[] = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -34,7 +32,6 @@ export class CalendarComponent implements OnInit {
     'July', 'August', 'September', 'October', 'November', 'December'
   ];
 
-  // Selection and state properties
   selectedStartDate: Date | null = null;
   selectedEndDate: Date | null = null;
   today: Date = new Date();
@@ -43,12 +40,10 @@ export class CalendarComponent implements OnInit {
   confirmedReservation: Reservation = {};
   calendarIsOpen: boolean = true;
 
-  // Input and output
   @Input() vehicleIDInputs: number = 0;
   @Output() close = new EventEmitter<void>();
 
   ngOnInit(): void {
-    // Fetch reservations for the specific vehicle
     this.fetchReservations();
   }
 
@@ -56,14 +51,12 @@ export class CalendarComponent implements OnInit {
     this.reservationService.getReservationsByCarId(this.vehicleIDInputs)
       .subscribe({
         next: (response: ReservationRes[]) => {
-          // Filter active reservations (not canceled or rejected)
           const activeReservations = response.filter(
             reservation =>
               reservation.status !== 'CANCELED' &&
               reservation.status !== 'REJECTED'
           );
 
-          // Convert to reserved dates
           this.reservedDates = this.getDatesBetweenReservations(activeReservations);
         },
         error: (error) => {
@@ -73,7 +66,6 @@ export class CalendarComponent implements OnInit {
       });
   }
 
-  // Convert reservation periods to individual dates
   private getDatesBetweenReservations(reservations: ReservationRes[]): Date[] {
     const reservedDates: Date[] = [];
 
@@ -93,7 +85,6 @@ export class CalendarComponent implements OnInit {
     return reservedDates;
   }
 
-  // Determine if a day is disabled (past or reserved)
   isDayDisabled(day: number | null): boolean {
     if (day === null) return true;
 
@@ -101,11 +92,9 @@ export class CalendarComponent implements OnInit {
     const currentMonth = this.currentDate.getMonth();
     const dayDate = new Date(currentYear, currentMonth, day);
 
-    // Check if date is before today or already reserved
     return dayDate < this.today || this.isDayReserved(day);
   }
 
-  // Check if a specific day is reserved
   isDayReserved(day: number | null): boolean {
     if (day === null) return false;
 
@@ -120,7 +109,6 @@ export class CalendarComponent implements OnInit {
     );
   }
 
-  // Generate calendar for current month
   generateCalendar(): void {
     const year = this.currentDate.getFullYear();
     const month = this.currentDate.getMonth();
@@ -130,27 +118,24 @@ export class CalendarComponent implements OnInit {
 
     const startDay = firstDay.getDay();
 
-    // Fill with null for empty days before the first of the month
     this.daysInMonth = Array(startDay).fill(null);
 
-    // Add days of the month
     for (let i = 1; i <= daysInMonth; i++) {
       this.daysInMonth.push(i);
     }
   }
 
-  // Navigate to previous month
   previousMonth(): void {
     this.currentDate.setMonth(this.currentDate.getMonth() - 1);
     this.generateCalendar();
-    this.fetchReservations(); // Refetch reservations for the new month
+    this.fetchReservations();
   }
 
   // Navigate to next month
   nextMonth(): void {
     this.currentDate.setMonth(this.currentDate.getMonth() + 1);
     this.generateCalendar();
-    this.fetchReservations(); // Refetch reservations for the new month
+    this.fetchReservations();
   }
 
   // Get current month and year for display
@@ -171,12 +156,10 @@ export class CalendarComponent implements OnInit {
       day
     );
 
-    // Reset or set start/end dates
     if (this.selectedStartDate === null || this.selectedEndDate !== null) {
       this.selectedStartDate = selectedDate;
       this.selectedEndDate = null;
     } else {
-      // Validate end date selection
       if (this.isDayReserved(day)) {
         this.toast.showToast('Selected end date is already reserved', 'error');
         return;
@@ -184,13 +167,11 @@ export class CalendarComponent implements OnInit {
 
       this.selectedEndDate = selectedDate;
 
-      // Ensure start date is before end date
       if (this.selectedStartDate > this.selectedEndDate) {
         [this.selectedStartDate, this.selectedEndDate] =
           [this.selectedEndDate, this.selectedStartDate];
       }
 
-      // Check if any dates in the range are reserved
       if (this.checkReservedInRange(this.selectedStartDate, this.selectedEndDate)) {
         this.toast.showToast('Some dates in the selected range are already reserved', 'error');
         this.selectedStartDate = null;
@@ -199,7 +180,6 @@ export class CalendarComponent implements OnInit {
     }
   }
 
-  // Check if any dates in the range are reserved
   private checkReservedInRange(start: Date, end: Date): boolean {
     let currentDate = new Date(start);
     while (currentDate <= end) {
@@ -211,7 +191,6 @@ export class CalendarComponent implements OnInit {
     return false;
   }
 
-  // Check if day is in selected period
   isDayInSelectedPeriod(day: number | null): boolean {
     if (day === null || this.selectedStartDate === null) return false;
 
@@ -228,14 +207,12 @@ export class CalendarComponent implements OnInit {
     }
   }
 
-  // Book the vehicle
   bookVehicle(): void {
     if (!this.selectedStartDate || !this.selectedEndDate) {
       this.toast.showToast('Please select start and end dates', 'error');
       return;
     }
 
-    // Additional validation to prevent booking reserved dates
     if (this.checkReservedInRange(this.selectedStartDate, this.selectedEndDate)) {
       this.toast.showToast('Some dates in the selected range are already reserved', 'error');
       return;
@@ -269,18 +246,15 @@ export class CalendarComponent implements OnInit {
     });
   }
 
-  // Close modal and reset confirmation
   hideConfirmation(): void {
     this.showConfirmation = false;
     this.closeModal();
   }
 
-  // Close modal
   closeModal(): void {
     this.close.emit();
   }
 
-  // Navigate to reservation details (optional)
   navigateToDetails(reservationId: number | undefined): void {
     console.log(`Navigating to details for reservation ${reservationId}`);
     this.showConfirmation = false;
