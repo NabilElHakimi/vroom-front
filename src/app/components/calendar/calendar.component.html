@@ -43,7 +43,7 @@
           'cursor-pointer hover:bg-red-300 dark:hover:bg-red-500': day && !isDayDisabled(day),
           'bg-red-400 dark:bg-red-500': isDayInSelectedPeriod(day),
           'cursor-not-allowed opacity-50 dark:opacity-40': isDayDisabled(day),
-          'line-through bg-red-100 text-red-500': isDayReserved(day)
+          'line-through bg-gray-500 text-gray-200/80': isDayReserved(day)
         }"
         (click)="selectDay(day)">
         {{ day || '' }}

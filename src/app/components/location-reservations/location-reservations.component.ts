@@ -7,10 +7,21 @@ import { ReservtionService } from '../../services/reservation-service/reservtion
 import { ReservationRes } from '../../model/ReservationRes';
 import { DatePipe, NgClass, NgForOf, NgIf } from '@angular/common';
 import { SuccesstoastService } from '../../services/toast-service/successtoast.service';
+import { AdminCalendarComponent } from '../admin-calendar/admin-calendar.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-location-reservations',
-  imports: [LocationInfoComponent, NgForOf, DatePipe, NgIf, NgClass],
+  imports: [
+    LocationInfoComponent,
+    NgForOf,
+    DatePipe,
+    NgIf,
+    NgClass,
+    AdminCalendarComponent,
+    FormsModule
+  ],
+  standalone: true,
   templateUrl: './location-reservations.component.html',
   styleUrl: './location-reservations.component.css',
 })
@@ -18,6 +29,15 @@ export class LocationReservationsComponent implements OnInit {
   reservations: ReservationRes[] = [];
   locationId = 0;
   location: LocationWithVehicles | undefined;
+  showReservationModal: boolean = false;
+
+  currentPage: number = 1;
+  totalPages: number = 1;
+  itemsPerPage: number = 9;
+  itemsPerPageOptions: number[] = [5, 9, 15, 30];
+  totalItems: number = 0;
+
+  updateId: string = "";
 
   constructor(
     private route: ActivatedRoute,
@@ -32,7 +52,7 @@ export class LocationReservationsComponent implements OnInit {
       if (id != null) {
         this.locationId = parseInt(id);
         this.getLocationById(this.locationId);
-        this.getReservationsByLocationId(this.locationId);
+        this.loadReservations();
       }
     });
   }
@@ -43,11 +63,13 @@ export class LocationReservationsComponent implements OnInit {
     });
   }
 
-  getReservationsByLocationId(locationId: number): void {
+  loadReservations(): void {
     this.reservationsService
-      .getReservationsByLocationId(locationId, 1, 9)
-      .subscribe((reservations) => {
-        this.reservations = this.padReservations(reservations.content, 10);
+      .getReservationsByLocationId(this.locationId, this.currentPage, this.itemsPerPage)
+      .subscribe((response) => {
+        this.reservations = this.padReservations(response.content, this.itemsPerPage);
+        this.totalPages = response.totalPages;
+        this.totalItems = response.totalElements;
       });
   }
 
@@ -65,12 +87,11 @@ export class LocationReservationsComponent implements OnInit {
   changeStatus(id: number | undefined, status: string): void {
     if (id) {
       this.reservationsService.changeStatus(id, status).subscribe(() => {
-        this.getReservationsByLocationId(this.locationId);
+        this.loadReservations();
         this.toast.showToast('Status changed successfully', 'success');
       });
     }
   }
-
 
   calculateTotalDays(startDate: string | undefined, endDate: string | undefined): number {
     if (!startDate || !endDate) return 0;
@@ -80,4 +101,31 @@ export class LocationReservationsComponent implements OnInit {
     return Math.ceil(timeDifference / (1000 * 3600 * 24));
   }
 
+  previousPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.loadReservations();
+    }
+  }
+
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+      this.loadReservations();
+    }
+  }
+
+  onItemsPerPageChange(): void {
+    this.currentPage = 1;
+    this.loadReservations();
+  }
+
+
+  resevationModal(id: number | undefined) {
+    this.updateId = id?.toString() || "";
+    this.showReservationModal = true;
+
+  }
+
+  protected readonly Number = Number;
 }

@@ -1,86 +1,54 @@
+<app-admin-calendar *ngIf="showReservationModal" class="z-50" [vehicleIDInputs]="Number(updateId)" (close)="showReservationModal = false"></app-admin-calendar>
+
+
 <div class="min-h-screen mt-6 relative">
   <app-location-info [location]="location"></app-location-info>
 
   <div class="mt-8 flex justify-center">
     <div class="w-full max-w-6xl overflow-x-auto">
       <table class="min-w-full bg-white dark:bg-slate-800 rounded-lg shadow-lg overflow-hidden">
-        <!-- Table Header -->
         <thead class="bg-gray-100 dark:bg-slate-700">
         <tr class="bg-gray-800 dark:bg-gray-200">
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-50 dark:text-black uppercase tracking-wider">
-            ID
-          </th>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-50 dark:text-black uppercase tracking-wider">
-            Reserved by
-          </th>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-50 dark:text-black uppercase tracking-wider">
-            Mark
-          </th>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-50 dark:text-black uppercase tracking-wider">
-            Model
-          </th>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-50 dark:text-black uppercase tracking-wider">
-            Matriculation
-          </th>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-50 dark:text-black uppercase tracking-wider">
-            Start Date
-          </th>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-50 dark:text-black uppercase tracking-wider">
-            End Date
-          </th>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-50 dark:text-black uppercase tracking-wider">
-            Status
-          </th>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-50 dark:text-black uppercase tracking-wider">
-            Total Price
-          </th>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-50 dark:text-black uppercase tracking-wider">
-            Actions
-          </th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-50 dark:text-black uppercase tracking-wider">ID</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-50 dark:text-black uppercase tracking-wider">Reserved by</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-50 dark:text-black uppercase tracking-wider">Mark</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-50 dark:text-black uppercase tracking-wider">Model</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-50 dark:text-black uppercase tracking-wider">Matriculation</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-50 dark:text-black uppercase tracking-wider">Start Date</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-50 dark:text-black uppercase tracking-wider">End Date</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-50 dark:text-black uppercase tracking-wider">Status</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-50 dark:text-black uppercase tracking-wider">Total Price</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-50 dark:text-black uppercase tracking-wider">Actions</th>
         </tr>
         </thead>
 
-        <!-- Table Body -->
         <tbody class="divide-y divide-gray-200 dark:divide-slate-700">
-        <!-- Loop through 10 rows -->
         <tr *ngFor="let res of reservations" class="hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors duration-200">
-          <!-- Reservation ID -->
           <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
             {{ res.id || '-' }}
           </td>
           <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-300">
             {{ (res.user?.first_name || '-') + ' ' + (res.user?.last_name || '-') }}
           </td>
-
-          <!-- Vehicle Mark -->
-          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400 cursor-pointer"
+              (click)="resevationModal(res.vehicle?.id)" title="Click to view vehicle reservations details">
             {{ res.vehicle?.mark || '-' }}
           </td>
-
-          <!-- Vehicle Model -->
-          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400 cursor-pointer"
+              (click)="resevationModal(res.vehicle?.id)" title="Click to view vehicle reservations details">
             {{ res.vehicle?.model || '-' }}
           </td>
-
-          <!-- Vehicle Matriculation -->
           <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">
             {{ res.vehicle?.codeCar || '-' }}
           </td>
-
-          <!-- Start Date -->
           <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400"
-          title="Total Days : {{ calculateTotalDays(res.startDate, res.endDate) || '-' }}">
-
+              title="Total Days : {{ calculateTotalDays(res.startDate, res.endDate) || '-' }}">
             {{ res.startDate ? (res.startDate | date) : '-' }}
           </td>
-
-          <!-- End Date -->
           <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400"
               title="Total Days : {{ calculateTotalDays(res.startDate, res.endDate) || '-' }}">
             {{ res.endDate ? (res.endDate | date) : '-' }}
           </td>
-
-          <!-- Status -->
           <td class="px-6 py-4 whitespace-nowrap">
               <span *ngIf="res.status" [ngClass]="{
                 'bg-yellow-500': res.status === 'PENDING',
@@ -89,20 +57,15 @@
                 'bg-blue-500': res.status === 'APPROVED',
                 'bg-gray-500': res.status === 'CANCELLED',
                 'bg-purple-500': res.status === 'EXPIRED'
-
               }" class="px-3 py-1 rounded-full text-sm font-medium text-white shadow-md">
                 {{ res.status }}
               </span>
             <span *ngIf="!res.status">-</span>
           </td>
-
-          <!-- Total Price -->
           <td class="px-6 py-4 whitespace-nowrap text-base font-semibold text-green-900 dark:text-green-500"
               title="Total Days : {{ calculateTotalDays(res.startDate, res.endDate) || '-' }}">
             {{ res.totalPrice ? res.totalPrice + ' MAD' : '-' }}
           </td>
-
-          <!-- Actions -->
           <td class="px-6 py-4 whitespace-nowrap text-sm">
               <span *ngIf="res.status === 'PENDING'" (click)="changeStatus(res.id, 'APPROVED')" class="px-3 py-1 rounded-full text-sm font-medium bg-blue-500 text-white shadow-md cursor-pointer">
                 APPROVED
@@ -115,12 +78,47 @@
               </span>
             <span *ngIf="!res.status">-</span>
 
-
-
           </td>
         </tr>
         </tbody>
       </table>
+
+      <div class="flex justify-between items-center mt-4 px-4">
+        <div class="flex items-center space-x-2">
+          <label class="text-sm text-gray-700 dark:text-gray-300">Items per page:</label>
+          <select
+            [(ngModel)]="itemsPerPage"
+            (change)="onItemsPerPageChange()"
+            class="form-select rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+          >
+            <option *ngFor="let option of itemsPerPageOptions" [value]="option">
+              {{ option }}
+            </option>
+          </select>
+        </div>
+
+        <div class="flex items-center space-x-2">
+          <button
+            (click)="previousPage()"
+            [disabled]="currentPage === 1"
+            class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            Previous
+          </button>
+
+          <span class="text-sm text-gray-700 dark:text-gray-300">
+            Page {{ currentPage }} of {{ totalPages }}
+          </span>
+
+          <button
+            (click)="nextPage()"
+            [disabled]="currentPage === totalPages"
+            class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            Next
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
