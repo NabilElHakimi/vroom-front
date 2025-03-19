@@ -1,26 +1,24 @@
-/*
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import { FormsModule } from "@angular/forms";
 import { RouterLink } from "@angular/router";
 import { AuthService } from '../../services/auth-service/auth.service';
 import { SuccesstoastService } from '../../services/toast-service/successtoast.service';
-import {ActivateAccount} from '../../model/ActivateAccount';
 import {tap} from 'rxjs';
+import {ActivateAccount} from '../../model/ActivateAccount';
 
 @Component({
   selector: 'app-activate-account',
   standalone: true,
   imports: [
-    FormsModule,
-    RouterLink
+    FormsModule
   ],
   templateUrl: './activate-account.component.html',
   styleUrl: './activate-account.component.css'
 })
 export class ActivateAccountComponent implements OnInit {
 
-  username: string | null = '';
+  username: string = '';
   code: string = '';
 
   constructor(
@@ -31,7 +29,7 @@ export class ActivateAccountComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.username = this.route.snapshot.paramMap.get('username');
+    this.username = <string>this.route.snapshot.paramMap.get('username');
   }
 
   activateAccount() {
@@ -53,19 +51,11 @@ export class ActivateAccountComponent implements OnInit {
   resendCode() {
     this.authService.resendCode(this.username).subscribe(
       (response) => {
-        console.log(response);  // Log the response from the API
+         this.toast.showToast('Code sent successfully' , 'success');
       },
       (error) => {
-        console.error('Error occurred:', error);  // Log the error if the API request fails
+        this.toast.showToast('Error sending code' , 'error');
       }
     );
   }
-
-
-
-
-
-
-
 }
-*/

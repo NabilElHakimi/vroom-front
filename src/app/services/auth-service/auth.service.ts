@@ -7,6 +7,7 @@ import { User } from '../../model/User';
 import {UserDetails} from '../../model/UserDetails';
 import {Profile} from '../../model/Profile';
 import {Register} from '../../model/Register';
+import {ActivateAccount} from '../../model/ActivateAccount';
 
 @Injectable({
   providedIn: 'root'
@@ -45,4 +46,13 @@ export class AuthService {
     return this.http.post(`${environment.API_URL}/auth/register`, registerForm);
 
   }
+
+  resendCode(username: string | null) {
+    return this.http.post(`${environment.API_URL}/auth/resend?username=${username}` , {});
+  }
+
+  activateAccount(activateAccount : ActivateAccount) : Observable<any> {
+       return this.http.post(`${environment.API_URL}/auth/validate`, activateAccount);
+  }
+
 }

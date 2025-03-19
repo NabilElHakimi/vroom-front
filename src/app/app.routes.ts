@@ -12,6 +12,7 @@ import {AddVehicleModalComponent} from './components/add-vehicle-modal/add-vehic
 import {DeleteConfirmationComponent} from './components/delete-confirmation/delete-confirmation.component';
 import {LocationReservationsComponent} from './components/location-reservations/location-reservations.component';
 import {MyProfileComponent} from './components/my-profile/my-profile.component';
+import {ActivateAccountComponent} from './auth/activate-account/activate-account.component';
 
 export const routes: Routes = [
   {
@@ -65,6 +66,10 @@ export const routes: Routes = [
   {
     path : 'register',
     component : RegisterComponent
+  },
+  {
+    path : 'activate-account/:username',
+    component : ActivateAccountComponent
   }
   ,{
     path : 'test',

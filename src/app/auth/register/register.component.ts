@@ -64,7 +64,7 @@ export class RegisterComponent {
     this.authService.register(this.registerForm).subscribe(
       () => {
         this.toast.showToast('Registration successful' , "success");
-        this.router.navigate(['/login']);
+        this.router.navigate(['/activate-account/' + this.registerForm.username]);
       }
     );
 
