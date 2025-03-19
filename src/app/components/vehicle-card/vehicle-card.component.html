@@ -18,6 +18,7 @@
   <div class="p-6">
 
     <h2 class="text-2xl font-bold text-red-500">{{vehicle.mark}}</h2>
+
     <h3 class="text-xl font-bold text-gray-700 dark:text-gray-200">{{vehicle.model}}</h3>
 
     <p class="text-gray-600 mb-4 dark:text-white">
@@ -46,19 +47,21 @@
     </div>
 
     <div class="flex gap-4">
-<!--      <button class="flex-1 flex items-center justify-center gap-2 text-gray-500 dark:text-white dark:hover:text-red-500 hover:text-red-500 transition-colors">-->
-<!--        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">-->
-<!--          <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />-->
-<!--        </svg>-->
-<!--        <span class="font-medium">128</span>-->
-<!--      </button>-->
+      <!--      <button class="flex-1 flex items-center justify-center gap-2 text-gray-500 dark:text-white dark:hover:text-red-500 hover:text-red-500 transition-colors">-->
+      <!--        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">-->
+      <!--          <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />-->
+      <!--        </svg>-->
+      <!--        <span class="font-medium">128</span>-->
+      <!--      </button>-->
 
-<!--      <button class="flex-1 flex items-center justify-center gap-2 dark:text-white dark:hover:text-red-500 text-gray-500 hover:text-red-500 transition-colors">-->
-<!--        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">-->
-<!--          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.068.157 2.148.279 3.238.364.466.037.893.281 1.153.671L12 21l2.652-3.978c.26-.39.687-.634 1.153-.67 1.09-.086 2.17-.208 3.238-.365 1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />-->
-<!--        </svg>-->
-<!--        <span class="font-medium">36</span>-->
-<!--      </button>-->
+      <!--      <button class="flex-1 flex items-center justify-center gap-2 dark:text-white dark:hover:text-red-500 text-gray-500 hover:text-red-500 transition-colors">-->
+      <!--        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">-->
+      <!--          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.068.157 2.148.279 3.238.364.466.037.893.281 1.153.671L12 21l2.652-3.978c.26-.39.687-.634 1.153-.67 1.09-.086 2.17-.208 3.238-.365 1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />-->
+      <!--        </svg>-->
+      <!--        <span class="font-medium">36</span>-->
+      <!--      </button>-->
+
+
 
       <button [routerLink] = "['/client/details' , vehicle.id]" title="Plus d'infos" class="flex-1 border dark:text-white  border-gray-300 text-gray-700 py-2 px-4 rounded-lg font-semibold dark:hover:bg-gray-900 hover:bg-gray-50 transition-colors">
         Plus
@@ -69,13 +72,11 @@
               title="Update" class="flex-1 border dark:text-white border-blue-500 text-blue-500 py-2 px-4 rounded-lg font-semibold dark:hover:bg-blue-700 hover:bg-blue-50 transition-colors">
         Update
       </button>
-
-    <app-update-vehicle-modal *ngIf="updateModalIsOpen"
-                              (vehicleModal)="updateModalIsOpen = false"
-                            [vehicle]="vehicle"
-    >
-    </app-update-vehicle-modal>
-
+      <app-update-vehicle-modal *ngIf="updateModalIsOpen"
+                                (vehicleModal)="updateModalIsOpen = false"
+                                [vehicle]="vehicle"
+      >
+      </app-update-vehicle-modal>
 
       <button
         (click)="openDeleteModal()"
@@ -83,8 +84,28 @@
         Delete
       </button>
 
+      <h3 (click)="openCalendar()" title="Reservations" class="text-xl font-bold cursor-pointer text-gray-700 dark:text-gray-200">
+        <svg xmlns="http://www.w3.org/2000/svg" class="inline-block m-1 h-8 w-8 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+      </h3>
+
     </div>
   </div>
 </div>
 
 <app-delete-confirmation *ngIf="modalIsOpen" [(modalIsOpen)] = "modalIsOpen" vehicleId="{{vehicle.id}} " (confirmDelete)="onDelete($event)"></app-delete-confirmation>
+
+<!-- Fixed: Changed to a full-screen modal for the calendar -->
+<div *ngIf="calendarIsOpen" class="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex justify-center items-center">
+  <div class="w-full h-full flex flex-col">
+    <div class="flex justify-end p-4">
+      <button (click)="calendarIsOpen = false" class="text-white bg-red-500 hover:bg-red-600 p-2 rounded-full">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+    <app-admin-calendar class="flex-1 w-full h-full" [vehicleIDInputs]="Number(vehicle.id)" (close)="closeCalendar()"></app-admin-calendar>
+  </div>
+</div>

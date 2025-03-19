@@ -4,6 +4,7 @@ import {JsonPipe, NgIf} from '@angular/common';
 import {RouterLink} from '@angular/router';
 import {DeleteConfirmationComponent} from '../delete-confirmation/delete-confirmation.component';
 import {UpdateVehicleModalComponent} from '../update-vehicle-modal/update-vehicle-modal.component';
+import {AdminCalendarComponent} from '../admin-calendar/admin-calendar.component';
 
 @Component({
   selector: 'app-vehicle-card',
@@ -12,6 +13,7 @@ import {UpdateVehicleModalComponent} from '../update-vehicle-modal/update-vehicl
     RouterLink,
     DeleteConfirmationComponent,
     UpdateVehicleModalComponent,
+    AdminCalendarComponent,
   ],
   templateUrl: './vehicle-card.component.html',
   styleUrl: './vehicle-card.component.css'
@@ -22,6 +24,16 @@ export class VehicleCardComponent {
   modalIsOpen :boolean = false;
   @Output() vehicleDeleted = new EventEmitter<string>();
   @Input() vehicle!: Vehicle;
+
+  calendarIsOpen: boolean = false;
+
+  closeCalendar() {
+    this.calendarIsOpen = false;
+  }
+
+  openCalendar() {
+    this.calendarIsOpen = true;
+  }
 
 
   isNewVehicle(): boolean {
@@ -54,4 +66,5 @@ export class VehicleCardComponent {
   openUpdateModal() {
     this.updateModalIsOpen = true;
   }
+  protected readonly Number = Number;
 }
