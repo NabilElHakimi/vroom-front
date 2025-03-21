@@ -8,11 +8,10 @@ import {FirstLocationFormComponent} from './components/first-location-form/first
 import {WelcomeLeaderComponent} from './components/welcome-leader/welcome-leader.component';
 import {MyLocationsComponent} from './components/my-locations/my-locations.component';
 import {LocationPageComponent} from './pages/location-page/location-page.component';
-import {AddVehicleModalComponent} from './components/add-vehicle-modal/add-vehicle-modal.component';
-import {DeleteConfirmationComponent} from './components/delete-confirmation/delete-confirmation.component';
 import {LocationReservationsComponent} from './components/location-reservations/location-reservations.component';
 import {MyProfileComponent} from './components/my-profile/my-profile.component';
 import {ActivateAccountComponent} from './auth/activate-account/activate-account.component';
+import {authGuardGuard} from './guards/isAuthenticatedGuard/auth-guard.guard';
 
 export const routes: Routes = [
   {
@@ -24,6 +23,7 @@ export const routes: Routes = [
   {
     path: 'client',
     component: PageClientComponent,
+    canActivate: [authGuardGuard],
     children: [
       {
         path: 'home',
@@ -70,10 +70,10 @@ export const routes: Routes = [
   {
     path : 'activate-account/:username',
     component : ActivateAccountComponent
-  }
-  ,{
-    path : 'test',
-    component :  MyProfileComponent
+  },
+  {
+    path: '**',
+    redirectTo: 'client/home'
   }
 
 ];
