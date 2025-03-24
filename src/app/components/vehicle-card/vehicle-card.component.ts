@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Vehicle} from '../../model/Vehicle';
-import {JsonPipe, NgIf} from '@angular/common';
+import {JsonPipe, NgIf, SlicePipe} from '@angular/common';
 import {RouterLink} from '@angular/router';
 import {DeleteConfirmationComponent} from '../delete-confirmation/delete-confirmation.component';
 import {UpdateVehicleModalComponent} from '../update-vehicle-modal/update-vehicle-modal.component';
@@ -14,6 +14,7 @@ import {AdminCalendarComponent} from '../admin-calendar/admin-calendar.component
     DeleteConfirmationComponent,
     UpdateVehicleModalComponent,
     AdminCalendarComponent,
+    SlicePipe,
   ],
   templateUrl: './vehicle-card.component.html',
   styleUrl: './vehicle-card.component.css'

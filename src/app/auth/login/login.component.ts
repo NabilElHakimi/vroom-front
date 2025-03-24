@@ -7,12 +7,16 @@ import { SuccesstoastService } from '../../services/toast-service/successtoast.s
 import { ThemeService } from '../../services/theme-service/theme.service';
 import { User } from '../../model/User';
 import { catchError, of, tap } from 'rxjs';
+import {NgIf} from '@angular/common';
+import {LodaingComponentComponent} from '../../components/lodaing-component/lodaing-component.component';
 
 @Component({
   selector: 'app-login',
   imports: [
     RouterLink,
-    FormsModule
+    FormsModule,
+    NgIf,
+    LodaingComponentComponent
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
@@ -29,9 +33,11 @@ export class LoginComponent  {
 
   username: string = '';
   password: string = '';
+  loading: boolean = false;
 
 
   signIn() {
+    this.loading = true;
     const user: User = { username: this.username, password: this.password };
 
     this.authService.login(user).pipe(
@@ -46,11 +52,13 @@ export class LoginComponent  {
           this.toast.showToast(res.message, 'error');
         }
       }),
+
       catchError((error) => {
         this.toast.showToast('An error occurred. Please try again.', 'error');
         return of(null);
       })
     ).subscribe();
+    this.loading = false;
   }
 
 

@@ -5,12 +5,16 @@ import {Register} from '../../model/Register';
 import {FormsModule} from '@angular/forms';
 import {SuccesstoastService} from '../../services/toast-service/successtoast.service';
 import {AuthService} from '../../services/auth-service/auth.service';
+import {LodaingComponentComponent} from '../../components/lodaing-component/lodaing-component.component';
+import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-register',
   imports: [
     RouterLink,
-    FormsModule
+    FormsModule,
+    LodaingComponentComponent,
+    NgIf
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
@@ -19,12 +23,15 @@ export class RegisterComponent {
 
   registerForm : Register = {}
   confirmPassword: string = '';
+  loading: boolean = false;
 
   constructor(private toast : SuccesstoastService ,
               private authService : AuthService ,
               private router:Router) { }
 
   onSubmit() {
+
+
     if (this.registerForm.password !== this.confirmPassword) {
       this.toast.showToast('Passwords do not match' , "error");
       return;
@@ -61,10 +68,14 @@ export class RegisterComponent {
     }
 
 
+    this.loading = true;
+
+
     this.authService.register(this.registerForm).subscribe(
       () => {
         this.toast.showToast('Registration successful' , "success");
         this.router.navigate(['/activate-account/' + this.registerForm.username]);
+        this.loading = false;
       }
     );
 

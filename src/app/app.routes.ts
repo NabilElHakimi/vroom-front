@@ -14,12 +14,12 @@ import {ActivateAccountComponent} from './auth/activate-account/activate-account
 import {authGuardGuard} from './guards/isAuthenticatedGuard/auth-guard.guard';
 
 export const routes: Routes = [
+
   {
     path: '',
     redirectTo: 'client/home',
     pathMatch: 'full',
   },
-
   {
     path: 'client',
     component: PageClientComponent,

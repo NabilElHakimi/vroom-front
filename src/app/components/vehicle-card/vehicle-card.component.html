@@ -22,8 +22,9 @@
     <h3 class="text-xl font-bold text-gray-700 dark:text-gray-200">{{vehicle.model}}</h3>
 
     <p class="text-gray-600 mb-4 dark:text-white">
-      {{vehicle.description}}
+      {{ vehicle.description | slice:0:30 }}{{ vehicle.description.length > 60 ? '...' : '' }}
     </p>
+
 
     <div class="flex justify-between items-center text-sm text-gray-500 mb-4 dark:text-white">
       <div class="flex items-center gap-2">
@@ -72,6 +73,7 @@
               title="Update" class="flex-1 border dark:text-white border-blue-500 text-blue-500 py-2 px-4 rounded-lg font-semibold dark:hover:bg-blue-700 hover:bg-blue-50 transition-colors">
         Update
       </button>
+
       <app-update-vehicle-modal *ngIf="updateModalIsOpen"
                                 (vehicleModal)="updateModalIsOpen = false"
                                 [vehicle]="vehicle"
@@ -84,7 +86,7 @@
         Delete
       </button>
 
-      <h3 (click)="openCalendar()" title="Reservations" class="text-xl font-bold cursor-pointer text-gray-700 dark:text-gray-200">
+      <h3 *ngIf="isLeader()" (click)="openCalendar()" title="Reservations" class="text-xl font-bold cursor-pointer text-gray-700 dark:text-gray-200">
         <svg xmlns="http://www.w3.org/2000/svg" class="inline-block m-1 h-8 w-8 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
         </svg>
